@@ -1,0 +1,82 @@
+@font-face {
+  font-family: 'HelveticaThin';
+  src: url("../font/helveticathin.eot");
+  /* IE9 Compat Modes */
+  src: url("../font/helveticathin.eot?#iefix") format("embedded-opentype"), url("../font/helveticathin.woff") format("woff"), url("../font/helveticathin.ttf") format("truetype"), url("../font/helveticathin.svg#svgFontName") format("svg");
+  /* Legacy iOS */ }
+
+div.journal-tab {
+  color: white;
+  height: 80px;
+  font-family: 'HelveticaThin', sans-serif;
+  width: 335px;
+  font-size: .8em; }
+
+div.journal-tab div:first-child {
+  width: 75%;
+  float: left;
+  height: 100%;
+  background-color: #e56c19;
+  text-align: center; }
+
+div.journal-tab div:last-child {
+  height: 100%;
+  background-color: #b75614;
+  text-align: center; }
+
+div.journal-tab .icon {
+  border: 1px solid white;
+  border-radius: 25px;
+  padding: 6px;
+  float: left;
+  position: relative;
+  left: 20px;
+  top: 22px; }
+
+div.journal-tab p {
+  padding-top: 30px; }
+
+div.journal-tab .date {
+  padding-top: 10px; }
+
+div.journal-tab.community div:first-child {
+  background-color: #e56c19; }
+
+div.journal-tab.community div:last-child {
+  background-color: #b75614; }
+
+div.journal-tab.wellbeing div:first-child {
+  background-color: #2ab8e9; }
+
+div.journal-tab.wellbeing div:last-child {
+  background-color: #159ccb; }
+
+div.journal-tab.activity div:first-child {
+  background-color: #e74c3b; }
+
+div.journal-tab.activity div:last-child {
+  background-color: #d52d1a; }
+
+div.journal-tab.creativity div:first-child {
+  background-color: #e671b5; }
+
+div.journal-tab.creativity div:last-child {
+  background-color: #de469e; }
+
+div.journal-tab.productivity div:first-child {
+  background-color: #22bc9c; }
+
+div.journal-tab.productivity div:last-child {
+  background-color: #1a9178; }
+
+div.journal-tab.reports div:first-child {
+  background-color: #f1c40d; }
+
+div.journal-tab.reports div:last-child {
+  background-color: #c19d0a; }
+
+div.journal-tab.development div:first-child {
+  background-color: #e74c3b; }
+
+div.journal-tab.development div:last-child {
+  background-color: #d52d1a; }

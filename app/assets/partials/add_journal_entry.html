@@ -1,0 +1,97 @@
+	
+	<div class="new-journal">
+		<div class="left-column">
+	
+			<div id="add-new-journal" >
+
+				<form name="journalForm" enctype="multipart/form-data" novalidate>
+					<header>
+						<div id="addPhotoUpload">
+							<a href="#">
+								<img alt="add_photo" src="img/add_white.png"  height="21" width="21"/>
+								Add Photo
+							</a>
+						</div>	
+						<h2>New</h2>
+					</header>
+
+					<div>
+						<textarea ng-model="journalEntry.comment" ng-class="getCssClasses(journalForm.comment)" name="comment" placeholder="Comment" rows="5" cols="31" required ></textarea>
+
+						<span ng-show="showError(journalForm.comment, 'required')">Your did a booboo</span>
+					</div>
+					<div>
+						<input ng-model="journalEntry.tags" type="text" placeholder="Tags" ng-minlength="3" ng-maxlength="10" name="tags"/>
+					</div>
+					<ul>
+						<li>
+							<fancy-input type="radio" check-id="new_wellbeing" is-checked="journalEntry.category_selection"
+										check-name="category_selection"
+										check-value="wellbeing" scale="0.5"
+										colour="{{ 'wellbeing' | colourTheme }}">
+									</fancy-input>
+							<span>Wellbeing</span>
+						</li>
+						<li>
+							<fancy-input  type="radio"  is-checked="journalEntry.category_selection"
+										check-id="new_creativity" check-name="category_selection"
+										check-value="creativity" scale="0.5" 
+										colour="{{ 'creativity' | colourTheme }}">
+							</fancy-input>
+							<span>Creativity</span>
+						</li>
+						<li>
+							<fancy-input type="radio" check-name="category_selection"  is-checked="journalEntry.category_selection"
+										check-id="new_community"
+										check-value="community" scale="0.5"
+										colour="{{ 'community' | colourTheme }}">
+							</fancy-input>
+							<span>Community</span>
+						</li>
+						<li>
+							<fancy-input type="radio"  check-name="category_selection" is-checked="journalEntry.category_selection"
+										check-id="new_productivity"
+										check-value="productivity" scale="0.5"
+										colour="{{ 'productivity' | colourTheme }}">
+							</fancy-input>
+							<span>Productivity</span>
+						</li>
+					</ul>
+					
+					<footer>
+					
+						<button ng-disabled="!canSave()" ng-click="save()">Save</button>
+						<button>Cancel</button>
+					
+					</footer>
+				</form>
+			</div>
+
+
+			<pre ng-bind="journalEntry | json"></pre>
+			<!-- <pre ng-bind="entry | json"></pre> -->
+
+	</div> <!-- End of left-column -->
+
+	<div class="right-column">
+		<p>
+			<a href="#" ng-click="goBack()">Back</a>
+		</p>
+		<p>
+			<a href="#">Add Feedback</a>
+		</p>
+		<p>
+			<a href="#">Log Activity</a>
+		</p>
+		<p>
+			<a href="#">Log Challenge</a>
+		</p>
+		<p>
+			<a href="#">Share</a>
+		</p>
+	
+	</div>
+
+
+</div>
+

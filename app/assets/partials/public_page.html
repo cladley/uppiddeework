@@ -1,0 +1,14 @@
+<div class="public-journal">
+	<div class="loading-screen" ng-show="loading">
+	
+		<h1>LOADING</h1>
+	</div>
+	
+	<ul class="journal-card-list">
+		<li ng-repeat="entry in entries" style="display: inline;">
+			<div journal-card journal-entry="entry"></div>
+		</li>
+	</ul>
+	
+	<button ng-click="get()">Get</button>
+</div>

@@ -1,0 +1,18 @@
+div.public-journal{
+	position: relative;
+}
+
+div.public-journal div.loading-screen{
+	position:absolute;
+	background-color: gray;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+}
+
+div.public-journal ul.journal-card-list li{
+	/*padding-top: 10px;
+	padding-left: 10px;*/
+	
+}

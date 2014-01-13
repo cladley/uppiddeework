@@ -1,0 +1,153 @@
+.fancyCheckbox input[type=checkbox], .fancyCheckbox input[type=radio] {
+  visibility: hidden; }
+
+.fancyCheckbox {
+  width: 40px;
+  height: 40px;
+  background: white;
+  display: inline-block;
+  border-radius: 100%;
+  position: relative;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5); }
+
+.fancyCheckbox label {
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-radius: 100px;
+  transition: all .5s ease;
+  cursor: pointer;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  z-index: 1;
+  background: #333;
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.5); }
+
+.fancyCheckbox.redspot input[type=checkbox]:checked + label {
+  background: #e74c3b; }
+
+.fancyCheckbox.greenspot input[type=checkbox]:checked + label {
+  background: #8bc53f; }
+
+.fancyCheckbox.yellowspot input[type=checkbox]:checked + label {
+  background: #f1c40d; }
+
+.fancyCheckbox.turquoisespot input[type=checkbox]:checked + label {
+  background: #22bc9c; }
+
+.fancyCheckbox.pinkspot input[type=checkbox]:checked + label {
+  background: #e671b5; }
+
+.fancyCheckbox.purplespot input[type=checkbox]:checked + label {
+  background: #8e44ad; }
+
+.fancyCheckbox.grayspot input[type=checkbox]:checked + label {
+  background: #666666; }
+
+.fancyCheckbox.bluespot input[type=checkbox]:checked + label {
+  background: #2ab8e9; }
+
+.fancyCheckbox.orangespot input[type=checkbox]:checked + label {
+  background: #e56c19; }
+
+.fancyCheckbox.charcoalspot input[type=checkbox]:checked + label {
+  background: #333333; }
+
+.fancyCheckbox.lightspot input[type=checkbox]:checked + label {
+  background: #f1f1f2; }
+
+
+
+
+.fancyInput input[type=checkbox], .fancyInput input[type=radio] {
+  visibility: hidden; }
+
+.fancyInput {
+  width: 40px;
+  height: 40px;
+  background: white;
+  display: inline-block;
+  border-radius: 100%;
+  position: relative;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5); }
+
+.fancyInput label {
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-radius: 100px;
+  transition: all .5s ease;
+  cursor: pointer;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  z-index: 1;
+  background: #333;
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.5); }
+
+.fancyInput.redspot input[type=checkbox]:checked + label {
+  background: #e74c3b; }
+
+.fancyInput.greenspot input[type=checkbox]:checked + label {
+  background: #8bc53f; }
+
+.fancyInput.yellowspot input[type=checkbox]:checked + label {
+  background: #f1c40d; }
+
+.fancyInput.turquoisespot input[type=checkbox]:checked + label {
+  background: #22bc9c; }
+
+.fancyInput.pinkspot input[type=checkbox]:checked + label {
+  background: #e671b5; }
+
+.fancyInput.purplespot input[type=checkbox]:checked + label {
+  background: #8e44ad; }
+
+.fancyInput.grayspot input[type=checkbox]:checked + label {
+  background: #666666; }
+
+.fancyInput.bluespot input[type=checkbox]:checked + label {
+  background: #2ab8e9; }
+
+.fancyInput.orangespot input[type=checkbox]:checked + label {
+  background: #e56c19; }
+
+.fancyInput.charcoalspot input[type=checkbox]:checked + label {
+  background: #333333; }
+
+.fancyInput.lightspot input[type=checkbox]:checked + label {
+  background: #f1f1f2; }
+
+.fancyInput.redspot input[type=radio]:checked + label {
+  background: #e74c3b; }
+
+.fancyInput.greenspot input[type=radio]:checked + label {
+  background: #8bc53f; }
+
+.fancyInput.yellowspot input[type=radio]:checked + label {
+  background: #f1c40d; }
+
+.fancyInput.turquoisespot input[type=radio]:checked + label {
+  background: #22bc9c; }
+
+.fancyInput.pinkspot input[type=radio]:checked + label {
+  background: #e671b5; }
+
+.fancyInput.purplespot input[type=radio]:checked + label {
+  background: #8e44ad; }
+
+.fancyInput.grayspot input[type=radio]:checked + label {
+  background: #666666; }
+
+.fancyInput.bluespot input[type=radio]:checked + label {
+  background: #2ab8e9; }
+
+.fancyInput.orangespot input[type=radio]:checked + label {
+  background: #e56c19; }
+
+.fancyInput.charcoalspot input[type=radio]:checked + label {
+  background: #333333; }
+
+.fancyInput.lightspot input[type=radio]:checked + label {
+  background: #f1f1f2; }

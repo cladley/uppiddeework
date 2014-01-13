@@ -1,0 +1,36 @@
+
+<div class="journal-card">
+	<header>
+		<img ng-src="img/{{ journalEntry.pic }}" alt="running"/>
+	</header>
+	<div class="card-content">
+
+		<div class="card-title">
+			<img ng-src="{{ journalEntry.category | getCategoryIcon }}" height="26" width="26"> <span>{{ journalEntry.category }}</span>
+		</div>
+		<div class="user-info">
+			<img alt="avatar" ng-src="img/{{ journalEntry.employee.profile_url }}" width="34" height="32"/>
+			<p class="user-name">{{ journalEntry.employee.name }}</p>
+			<p class="company">{{ journalEntry.employee.company }}</p>
+		</div>
+		<div class="description">
+			<p>{{ journalEntry.description | limitTo:25}}<a href="#">more</a>
+		</div>
+		<footer>
+			<ul>
+				<li>
+					<p>{{ journalEntry.likes }}</p>
+					<p>Likes</p>
+				</li>
+				<li>
+					<p>{{ journalEntry.stars }}</p>
+					<p>Stars</p>
+				</li>
+				<li>
+					<p class="lastcounter">{{ journalEntry.shares }}</p>
+					<p>Shares</p>
+				</li>
+			</ul>
+		</footer>
+	</div>
+</div>

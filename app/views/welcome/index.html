@@ -1,0 +1,125 @@
+ <div id="page-container">
+    <div id="sidebar" ng-controller="sidebarController">
+      <div>
+        <img src="img/UppiddeePNG3.png" width="223" height="65" />
+      </div>
+
+      <div class="title-container">
+     
+      </div>
+
+
+    
+      <div class="title">
+        <h1>Journal</h1>
+        <h2>Lorem ipsum dolor sit amet, consectutor adipisicing elit.</h2>
+      </div>
+
+      <div>
+
+          
+          <a id="ADDBUTTON" class="add_button" href="#/add"   style="color:white">
+            <img alt="add_photo" src="img/add_white.png"  height="35" width="35" />
+           New
+          </a>
+
+      </div>
+      
+      <div class="search">
+        <form>
+          <input type="text" name="txtSearch" placeholder="Search" />
+          <button>
+            <span>
+            ▶
+          </span></button>
+        </form>
+      </div>
+      <div class="filters">
+        <h2>Filters</h2>
+        <ul>
+
+          <li ng-repeat="category in categories">
+            <fancy-checkbox check-id="{{ category.name }}"
+                  check-name="{{ category.name }}" is-checked="category.checked"
+                  check-value="{{ category.name }}" scale="0.6"
+                  colour="{{ category.name | colourTheme }}">
+            </fancy-checkbox>
+            <span>{{ category.name }}</span>
+
+          </li>
+
+
+         <!--  <li >
+          <fancy-checkbox check-id="blah" 
+                check-name="wellbeing" is-checked="true"
+                check-value="wellbeing" scale="0.6"
+                colour="{{ 'wellbeing' | colourTheme }}">
+              </fancy-checkbox>
+              <span>Wellbeing</span>
+          </li>
+          <li>
+            <fancy-checkbox  
+                check-id="creativity" is-checked="true"
+                check-value="creativity" scale="0.6" 
+                colour="{{ 'creativity' | colourTheme }}">
+            </fancy-checkbox>
+            <span>Creativity</span>
+          </li>
+          <li>  
+            <fancy-checkbox
+                check-id="community"  is-checked="true"
+                check-value="community" scale="0.6" 
+                colour="{{ 'community' | colourTheme }}">
+            </fancy-checkbox>
+            <span>Community</span>
+          </li>
+          <li>
+            <fancy-checkbox
+                check-id="productivity" is-checked="true"
+                check-value="productivity" scale="0.6"
+                colour="{{ 'productivity' | colourTheme }}">
+            </fancy-checkbox>
+            <span>Productivity</span>
+          </li> -->
+        </ul>
+      </div>
+    </div> <!-- End Sidebar -->
+    <div id="main-section">
+      <header class="main-header">
+        <div id="toolbar">
+          <ul>
+            <li>Logout</li>
+            <li>Settings</li>
+            <li>Metrics</li>
+          </ul>
+        </div>
+        <nav>
+          <ul>
+            <li>Dashboard</li>
+            <li>Wellbeing</li>
+            <li>Community</li>
+            <li>Creativity</li>
+          </ul>
+        </nav>
+      </header>
+
+      <div class="content" ng-view>
+        <!-- ng-view will be here -->
+       
+
+      </div>
+    </div><!-- End Cotent -->
+    <footer class="main-footer">
+      <address>Colab, Letterkenny Institute of Technology, Co. Donegal, Ireland 2013 Uppiddee. </address>
+      <span>All rights reserved. Privacy Policy</span> 
+      <ul>
+        <li><a href="">Blog</a<</li>
+        <li><a href="">About Us</a></li>
+        <li><a href="">Contact Us</a></li>
+      </ul>
+    </footer>
+  </div>
+ 
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  -->

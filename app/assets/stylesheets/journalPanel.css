@@ -1,0 +1,110 @@
+@font-face {
+  font-family: HelveticaThin;
+  src: url("../font/HelveticaThin.ttf"); }
+
+div.journal-card {
+  font-family: 'HelveticaThin', sans-serif;
+  width: 220px;
+  padding-bottom: 8px;
+  margin: 4px;
+  display: inline-block;
+  position: relative;
+  color: white; }
+
+/* Differnet colours for the different categories available */
+div.journal-card.reports {
+  background: #f1c40d; }
+
+div.journal-card.community {
+  background: #e56c19; }
+
+div.journal-card.development {
+  background: #e74c3b; }
+
+div.journal-card.productivity {
+  background: #22bc9c; }
+
+div.journal-card.activity {
+  background: #e74c3b; }
+
+div.journal-card.creativity {
+  background: #e671b5; }
+
+div.journal-card.wellbeing {
+  background: #2ab8e9; }
+
+div.journal-card.uppiddee {
+  background: #8bc53f; }
+
+div.journal-card header {
+  height: 120px;
+  overflow: hidden; }
+
+div.journal-card header img {
+  width: 100%; }
+
+div.journal-card div.card-content {
+  padding: 20px;
+  margin-top: 4px; }
+
+.user-info {
+  margin-top: 13px; }
+
+.user-info img {
+  float: left;
+  padding-right: 8px; }
+
+.user-info p {
+  padding-bottom: 2px; }
+
+.user-info .company {
+  font-size: 11px;
+  font-weight: bolder; }
+
+.card-title span {
+  font-size: .9em; }
+
+.user-name {
+  font-size: 20px; }
+
+.description {
+  clear: both;
+  padding-top: 12px;
+  padding-bottom: 20px;
+  font-size: 14px; }
+
+div.journal-card footer ul {
+  width: 100%; }
+
+div.journal-card footer ul li {
+  display: inline-block;
+  width: 32%; }
+
+div.journal-card footer ul li:last-child {
+  width: 30%;
+  text-align: right; }
+
+div.journal-card footer ul li:nth-child(2) {
+  text-align: center; }
+
+div.journal-card footer ul li p:last-child {
+/*  padding-top: 8px;*/
+  font-size: 11px; }
+
+.description a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold; }
+
+.card-title img {
+  border: 1px solid white;
+  border-radius: 25px;
+  padding: 6px; }
+
+.card-title span {
+  position: relative;
+  bottom: 16px;
+  left: 8px; }
+
+.lastcounter {
+  padding-right: 10px; }
