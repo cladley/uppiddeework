@@ -5,24 +5,18 @@
       </div>
 
       <div class="title-container">
-     
       </div>
 
-
-    
       <div class="title">
         <h1>Journal</h1>
         <h2>Lorem ipsum dolor sit amet, consectutor adipisicing elit.</h2>
       </div>
 
       <div>
-
-          
           <a id="ADDBUTTON" class="add_button" href="#/add"   style="color:white">
             <img alt="add_photo" src="img/add_white.png"  height="35" width="35" />
            New
           </a>
-
       </div>
       
       <div class="search">
@@ -37,52 +31,53 @@
       <div class="filters">
         <h2>Filters</h2>
         <ul>
-
-          <li ng-repeat="category in categories">
-            <fancy-checkbox check-id="{{ category.name }}"
-                  check-name="{{ category.name }}" is-checked="category.checked"
-                  check-value="{{ category.name }}" scale="0.6"
-                  colour="{{ category.name | colourTheme }}">
-            </fancy-checkbox>
-            <span>{{ category.name }}</span>
-
-          </li>
-
-
-         <!--  <li >
-          <fancy-checkbox check-id="blah" 
-                check-name="wellbeing" is-checked="true"
-                check-value="wellbeing" scale="0.6"
-                colour="{{ 'wellbeing' | colourTheme }}">
-              </fancy-checkbox>
-              <span>Wellbeing</span>
-          </li>
           <li>
-            <fancy-checkbox  
-                check-id="creativity" is-checked="true"
-                check-value="creativity" scale="0.6" 
-                colour="{{ 'creativity' | colourTheme }}">
-            </fancy-checkbox>
+            <fancy-input type="checkbox" check-id="wellbeing" is-checked="selected_category.wellbeing"
+                    check-name="wellbeing"
+                    check-value="wellbeing" scale="0.5"
+                    colour="{{ 'wellbeing' | colourTheme }}">
+            </fancy-input>
+            <span>Wellbeing</span>
+          </li>
+
+          <li>
+            <fancy-input type="checkbox" check-id="creativity" is-checked="selected_category.creativity"
+                  check-name="creativity"
+                  check-value="creativity" scale="0.5"
+                  colour="{{ 'creativity' | colourTheme }}">
+            </fancy-input>
             <span>Creativity</span>
           </li>
-          <li>  
-            <fancy-checkbox
-                check-id="community"  is-checked="true"
-                check-value="community" scale="0.6" 
-                colour="{{ 'community' | colourTheme }}">
-            </fancy-checkbox>
+
+          <li>
+            <fancy-input type="checkbox" check-id="community" is-checked="selected_category.community"
+                    check-name="community"
+                    check-value="community" scale="0.5"
+                    colour="{{ 'community' | colourTheme }}">
+            </fancy-input>
             <span>Community</span>
           </li>
           <li>
-            <fancy-checkbox
-                check-id="productivity" is-checked="true"
-                check-value="productivity" scale="0.6"
-                colour="{{ 'productivity' | colourTheme }}">
-            </fancy-checkbox>
+            <fancy-input type="checkbox" check-id="productivity" is-checked="selected_category.productivity"
+                    check-name="productivity"
+                    check-value="productivity" scale="0.5"
+                    colour="{{ 'productivity' | colourTheme }}">
+            </fancy-input>
             <span>Productivity</span>
-          </li> -->
-        </ul>
+          </li>
+          <li>
+            <fancy-input type="checkbox" check-id="activity"
+            is-checked="selected_category.activity"
+                  check-name="activity"
+                  check-value="activity" scale="0.5"
+                  colour="{{ 'activity' | colourTheme }}">
+            </fancy-input>
+            <span>Activity</span>
+          </li>
+        </ul> <!-- End of Filters Selection -->
+
       </div>
+    
     </div> <!-- End Sidebar -->
     <div id="main-section">
       <header class="main-header">
@@ -109,7 +104,7 @@
 
       </div>
     </div><!-- End Cotent -->
-    <footer class="main-footer">
+    <!-- <footer class="main-footer">
       <address>Colab, Letterkenny Institute of Technology, Co. Donegal, Ireland 2013 Uppiddee. </address>
       <span>All rights reserved. Privacy Policy</span> 
       <ul>
@@ -117,8 +112,20 @@
         <li><a href="">About Us</a></li>
         <li><a href="">Contact Us</a></li>
       </ul>
-    </footer>
+    </footer> -->
+    <div class="push"></div>
   </div>
+  <footer class="main-footer">
+    <div class="footer-container">
+      <address>Colab, Letterkenny Institute of Technology, Co. Donegal, Ireland 2013 Uppiddee. </address>
+      <span>All rights reserved. Privacy Policy</span> 
+      <ul>
+        <li><a href="">Blog</a<</li>
+        <li><a href="">About Us</a></li>
+        <li><a href="">Contact Us</a></li>
+      </ul>
+    </div>
+  </footer>
  
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>

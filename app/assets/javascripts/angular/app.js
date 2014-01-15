@@ -1,6 +1,15 @@
 'use strict';
 
 
+
+$( window ).resize(function() {
+	// // console.log("Document = " + $(document).height());
+	// // console.log("Window   = " + $(window).height());
+	// $('#sidebar').css('height', $(document).height() + "px");
+	console.log(document.body.scrollHeight);
+
+});
+
 angular.module('journalApp', [
 	'ngRoute',
 	'journal.directives',

@@ -4,11 +4,14 @@
 		<h1>LOADING</h1>
 	</div>
 	
-	<ul class="journal-card-list">
-		<li ng-repeat="entry in entries" style="display: inline;">
-			<div journal-card journal-entry="entry"></div>
-		</li>
-	</ul>
+
+	<column-panel cols="3" collection="entries" item-name="other" filterbyy="cats">
 	
+		<div journal-card journal-entry="item"  ></div>
+	</column-panel>
+
 	<button ng-click="get()">Get</button>
+	<br>
+	<button ng-click="start_timer()">start_timer</button>
+	<button ng-click="stop_timer()">Stop_timer</button>
 </div>

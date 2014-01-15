@@ -8,13 +8,23 @@
 html, body {
   height: 100%;
   font-family: 'HelveticaThin', sans-serif;
-  background-color: #c0c0c0; }
+  background-color: #c0c0c0; 
+  overflow-y: scroll;
+}
+
+
 
 #page-container {
-  margin: 0 auto;
   min-height: 100%;
+  height: autp !important;
+  /*height:100%;*/
   width: 1006px;
-  background-color: white; }
+  /*margin: 0 auto -4em;*/
+  /*margin: 0 auto -30px;*/
+  margin: 0 auto -30px;
+  background-color: white; 
+
+}
 
 
 #main-section header.main-header{
@@ -24,14 +34,14 @@ html, body {
 
 }
 
-
-// REMOVE this
-#ADDBUTTON{
-
+.main-footer{
+  width:1006px;
+  margin: 0 auto;
 }
 
-
-
+.main-footer, .push{
+  clear:both;
+}
 
 .journal .content{
   padding-top: 12px;
@@ -40,6 +50,8 @@ html, body {
   float:right;
 }
 
+
+
 .journal #sidebar {
 
   position: relative;
@@ -47,6 +59,7 @@ html, body {
   background-size: cover;
   padding: 36px;
   width: 200px;
+  height:100%;
   float: left;
   color: white; }
   .journal #sidebar .title-container {
@@ -74,6 +87,9 @@ html, body {
     margin-bottom: 20px;
   
     width: 130px; }
+  .journal #sidebar .search{
+    margin-top: 16px;
+  }
   .journal #sidebar .search button {
     padding-left: 4px;
     padding-right: 8px;
@@ -105,7 +121,12 @@ html, body {
     color:white;
     text-decoration: none;
     font-size: 1.8em;
+    
+}
 
+.journal #sidebar .add_button img{
+  position:relative;
+  top:8px;
 }
 
 .journal #toolbar {
@@ -155,13 +176,18 @@ html, body {
     display: inline-block; }
   .journal footer ul {
     float: right;
-    width: 250px;
     text-align: right li; }
 
 .journal .splash-screen h2, .journal .splash-screen a {
   color: #8bc53f; }
 
 
+
+.journal .main-footer .footer-container{
+  width:900px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
 
 .journal main-footer ul{
   float: right;
@@ -174,10 +200,11 @@ html, body {
 .journal footer.main-footer a{
   text-decoration: none;
   color:white;
+  padding-left: 5px;
+  padding-right: 5px;
 }
-
-
 
 .journal footer.main-footer li:after{
   content : "|";
 }
+

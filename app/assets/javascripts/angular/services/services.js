@@ -2,19 +2,21 @@
 
 /* Services */
 
-angular.module('journal.services', [])
-	.factory('mockJournalEntries',function($http){
+var myServices = angular.module('journal.services', []);
+
+myServices.factory('mockJournalEntries',function($http){
 		return {
 			get : function(){
 				return $http.get('/app/data.json');
 			}
 		};
-	})
-	.factory('journalEntries', function($http,$q){
-		return{
+	});
+
+
+myServices.factory('journalEntries', function($http,$q){
+		return {
 			getAll : function(){
 				return $http.get('/entries');
-
 			},
 			getUsers : function(user_id){
 				var url = '/employee/' + user_id + '/entries';
@@ -25,16 +27,19 @@ angular.module('journal.services', [])
 				return $http.post(url, entry);
 			}
 		};
+	});
 
-	})
-	.factory('UserLoggedIn', function(){
+
+myServices.factory('UserLoggedIn', function(){
 		return {
 			getCurrentUserId : function(){
 				return "1";
 			}
-		}
-	})
-	.factory('user_entries_cache', function(){
+		};
+	});
+	
+
+myServices.factory('user_entries_cache', function(){
 		var user_entries = {};
 		var init = false;
 
@@ -66,30 +71,118 @@ angular.module('journal.services', [])
 	});
 
 
-
-
-	function partition(size, items){
-		var items_per = Math.floor(items.length / size);
-		
-		var result =  __p(items_per, items);
-		debugger;
-		if(result.length > size){
-			var num_remaining = result.length - size;
-			var remaining = result.splice(result.length - num_remaining,num_remaining);
-			for(var i = 0; i < remaining.length; i++){
-				result[i].push(remaining[i]);
-			}
+// TODO : authorization - Get session cookie and save
+//      : get current user with token - maybe user id from server
+//      : user can only edit their own journal entries, so check
+myServices.factory('auth', function(){
+	var user_id = "1";
+	var user;
+	return{
+		get_user_id : function(){
+			return user_id;
 		}
 
-		return result;
+	};
+
+});
+
+
+
+myServices.factory('continual_record_fetcher', function($timeout,$q,journalEntries){
+	var timer;
+	var should_stop = true;
+	var is_running = false;
+	var error_count = 0;
+	var successCallback;
+	var errorCallback;
+
+	function run(){
+		console.log("fetching records from server");
+		var prm = journalEntries.getAll();
+
+		prm.then(
+			function(data,status,headers,config){    // On Success
+				successCallback(data);
+				if(!should_stop) $timeout(run,3000);
+			},
+			function(data,status,headers,config){    // On Error. Idea = if get 3 or more errors, then cancel
+				// Error received, retry and send again
+				if(++error_count > 3){
+					if(!should_stop) $timeout(run,3000);
+				}else{
+					// After so many errors and retrys, cancel operation
+					errorCallback(data);
+					_stop();
+				}
+			});
 	}
 
-
-	function __p(size,items){
-		if(items.length === 0) return [];
-
-		return ([items.slice(0,size)]).concat(__p(size, items.slice(size)));
+	function _stop(){
+		$timeout.cancel(timer);
+		should_stop = true;
+		is_running = false;
+		error_count = 0;
+		console.log("Stopped");
 	}
 
+	return {
+		start : function(onSuccess,onError){
+			successCallback = onSuccess || function(){};
+			errorCallback = onError || function(){};
+
+			if(!is_running){
+				is_running = true;
+				should_stop = false;
+				error_count = 0;
+				run();				
+			}
+
+		},
+		stop : function(){
+			_stop();
+		}
+	};
+});
 
 
+
+
+// Cache service for user entries 
+myServices.factory('cache', function(){
+	// The user entries will always be up to date,
+	// since only the user can create/edit etc. When one
+	// of those operation happens, then we update 
+	// user_entries here
+	var user_entries = {};
+	var invalid = true;
+
+	return {
+		get_user_entries : function(){
+
+		},
+		set_user_entries : function(){
+
+		},
+		add_user_entry : function(entry){
+			user_entries.push(entry);
+		}, 
+		get_user_entry : function(entry_id){
+
+		},
+		update_user_entry : function(entry_id, entry){
+
+		},
+		remove_user_entry: function(entry_id){
+
+		},
+		get_public_entries : function(){
+
+		},
+		invalidate_public_entries : function(){
+			invalid = true;
+		},
+		set_public_entries : function(entries){
+
+		}
+	};
+});
