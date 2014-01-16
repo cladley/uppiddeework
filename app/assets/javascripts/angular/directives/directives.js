@@ -256,3 +256,21 @@ myDirectives.directive('columnPanel', function($filter){
 		}
 	};
 });
+
+
+
+myDirectives.directive('selectFile', function(){
+	return {
+		restrict : "A", 
+		scope : {
+			'fileSelected': '&'
+		},
+		link : function(scope,elem,attr){
+			elem.bind("change", function(e){
+				var fileObj = (e.srcElement || e.target).files[0];
+				
+				scope.fileSelected({'fileObj': fileObj});
+			});
+		}
+	};
+});

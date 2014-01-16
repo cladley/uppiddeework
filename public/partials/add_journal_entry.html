@@ -10,15 +10,14 @@
 							
 								<!-- <img alt="add_photo" src="img/add_white.png"  height="21" width="21" /> -->
 									
-
 							<input type="file" name="photo" id="photo"
-									ng-model="journalEntry.photo" /> 
+									ng-model="journalEntry.photo"  select-file file-selected="image_selected(fileObj)" /> 
 							
 							<h2>Add Photo</h2>
 						</div>	
 						<h2>New</h2>
 					</header>
-
+				
 					<div>
 						<textarea ng-model="journalEntry.description" ng-class="getCssClasses(journalForm.description)" name="description" placeholder="Comment" rows="5" cols="31" required ></textarea>
 
@@ -91,6 +90,7 @@
 	</div> <!-- End of left-column -->
 
 	<div class="right-column">
+			<img ng-src="{{ yoimage }}"  width="300" height="300"/>
 		<p>
 			<a href="#" ng-click="goBack()">Back</a>
 		</p>

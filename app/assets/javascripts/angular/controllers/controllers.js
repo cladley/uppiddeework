@@ -17,9 +17,7 @@ myControllers.controller('mainController', ['$scope', 'mockJournalEntries', func
 }]);
 
 
-myControllers.controller('publicController', ['$scope', 'auth', 
-												'journalEntries', 'continual_record_fetcher', 
-												 function($scope,auth, journalEntries, continual_record_fetcher){
+myControllers.controller('publicController', ['$scope', 'auth', 'journalEntries', 'continual_record_fetcher', function($scope,auth, journalEntries, continual_record_fetcher){
 		// Todo : Load all entries on page load - check cache first.
 		//      : start timer to check server for new entries (60 secs)
 		//      : animate new entries in - flash or something
@@ -58,7 +56,9 @@ myControllers.controller('publicController', ['$scope', 'auth',
 
 
 		$scope.$on('categoryfilter:changed', function(evt,data){
+		
 			$scope.cats = data.categories;
+
 		});
 
 		$scope.cats = {
@@ -118,7 +118,23 @@ myControllers.controller('addEntryController', ['$scope','UserLoggedIn', '$http'
 		};
 
 
-		// Form validation related methods;
+		$scope.image_selected = function(data){
+
+			var reader = new FileReader();
+			reader.onload = function(e){
+					$scope.$apply(function(){
+						$scope.yoimage =  e.target.result;
+					});
+			};
+
+
+
+			reader.readAsDataURL(data);
+
+		};
+
+
+		// Form related methods;
 		$scope.canSave = function(){
 			return $scope.journalForm.$dirty && $scope.journalForm.$valid;
 		};
@@ -172,27 +188,6 @@ myControllers.controller('addEntryController', ['$scope','UserLoggedIn', '$http'
 
 		init();
 	}]);
-
-
-myControllers.controller('testController', ['$scope', function($scope){
-			$scope.title = "Test Page";
-
-
-			$scope.flag = false;
-
-			$scope.changeflag = function(){
-				$scope.flag = !$scope.flag;
-			};
-
-			$scope.$watch('flag', function(newVal,oldVal){
-			//	console.log("Changed");
-				console.log("Been changed");
-			});
-	}])
-
-
-
-
 
 
 
