@@ -5,6 +5,8 @@ Mockbackend::Application.routes.draw do
   get 'entries' => 'entries#index', defaults:{format: :json}
   get 'employee/:id/entries' => 'entries#by_employee', defaults:{format: :json}
   post 'employee/:id/entries/create' => 'entries#create', defaults:{format: :json}
+  get 'filetest' => 'entries#testfile'
+  post 'uploadfile' => 'entries#uploadfile'
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 

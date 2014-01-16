@@ -17,8 +17,6 @@ div.public-journal ul.journal-card-list li{
 	
 }
 
-
-
 div.public-journal .column-panel ul{
 	display: inline-block;
 	vertical-align: top;
@@ -38,4 +36,5 @@ div.public-journal .column-panel .journal-card:hover{
 	-moz-transform:scale(1.04);
 	-ms-transform:scale(1.04);
 	transform:scale(1.04);
+	
 }

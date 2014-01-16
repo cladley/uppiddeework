@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body {
+  		font: 14px/1.5 helvetica-neue, helvetica, arial, san-serif;
+  		padding:10px;
+		}
+
+		h1 {
+		  margin-top:0;
+		}
+
+		#main {
+		  width: 300px;
+		  margin:auto;
+		  background: #ececec;
+		  padding: 20px;
+		  border: 1px solid #ccc;
+		}
+
+		#image-list {
+		  list-style:none;
+		  margin:0;
+		  padding:0;
+		}
+		#image-list li {
+		  background: #fff;
+		  border: 1px solid #ccc;
+		  text-align:center;
+		  padding:20px;
+		  margin-bottom:19px;
+		}
+		#image-list li img {
+		  width: 258px;
+		  vertical-align: middle;
+		  border:1px solid #474747;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="main">
+		<h1>Upload Your Images</h1>
+		<form method="post" enctype="multipart/form-data" action=""
+			<label for="images">Choose an image</label>
+		 <input type="file" name="images" id="images"  />  
+			<button type="submit" id="btn">Upload File!</button>
+		</form>
+
+		<div id="response"></div>
+		<ul id="image-list">
+
+		</ul>
+	</div>
+
+
+
+	<script type="text/javascript">
+		(function(){
+			var input = document.getElementById('images');
+			var formdata = false;
+
+
+			var csrfToken = $("meta[name='csrf-token']").attr("content");
+			
+			$.ajaxSetup({
+				headers: {
+				   'X-CSRF-Token': csrfToken
+				  }
+			});
+
+
+
+			if(window.FormData){
+				formdata = new FormData();
+				document.getElementById("btn").style.display = "none";
+			}
+
+
+
+
+			function showUploadedItem(source){
+				var list = document.getElementById("image-list");
+				var li = document.createElement("li");
+				var img = document.createElement("img");
+
+				img.src = source;
+				li.appendChild(img);
+				list.appendChild(li);
+			}
+
+
+
+			if(input.addEventListener){
+				input.addEventListener("change", function(evt){
+					var i = 0;
+					var len = this.files.length;
+					var img,reader,file;
+
+					document.getElementById("response").innerHTML = "Uploading. . .";
+
+					for(; i<len; i++){
+						file = this.files[i];
+						if(!!file.type.match(/image.*/)){
+							if(window.FileReader){
+								reader = new FileReader();
+								reader.onloadend = function(e){
+									showUploadedItem(e.target.result);
+								};
+								reader.readAsDataURL(file);
+							}
+
+							if(formdata){
+								formdata.append("images[]", file);
+							}
+
+						}
+					}
+
+					if(formdata){
+						$.ajax({
+							url : "uploadfile", 
+							type : "POST",
+							data : formdata,
+							processData : false,
+							contentType : false,
+							success : function(res){
+								document.getElementById("response").innerHTML = res;
+							}
+
+						});
+
+					}
+
+
+				}, false);
+			}
+
+		})();
+
+	</script>
+
+</body>
+</html>

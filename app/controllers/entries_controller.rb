@@ -26,7 +26,6 @@ class EntriesController < ApplicationController
 			entry = emp.entries.create(:category => params[:category], 
 																:description => params[:description])
 
-
 			render status: 200, json: entry.to_json
 
 		else
@@ -48,5 +47,21 @@ class EntriesController < ApplicationController
 	end
 
 
+	def testfile
+
+	end
+
+	def uploadfile
+		upload = params[:images]
+
+		filepath = Rails.root.join('public', 'img', upload[0].original_filename)
+
+		File.open(filepath, 'wb') do |file|
+			file.write(upload[0].read)
+		end
+		render status: 200, json: '{"good":"good"}'
+	end
+
 
 end
+
