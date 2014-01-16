@@ -9,10 +9,8 @@ class EntriesController < ApplicationController
 		# @entries = Employee.all
 		@entries = Entry.all
 		# respond_with @entries(:include => :Entry)
-
 		respond_to do |format|
 			format.json{render :json => @entries.to_json(:include => :employee )}
-
 		end
 		
 	end
@@ -22,10 +20,8 @@ class EntriesController < ApplicationController
 		emp = Employee.find_by(:id => params[:id])
 	
 		if !emp.nil?
-	
 			entry = emp.entries.create(:category => params[:category], 
 																:description => params[:description])
-
 			render status: 200, json: entry.to_json
 
 		else
@@ -43,8 +39,9 @@ class EntriesController < ApplicationController
 		else
 			respond_with '{"error" : "not found"}', :status => 404
 		end
-
 	end
+
+
 
 
 	def testfile
@@ -53,7 +50,6 @@ class EntriesController < ApplicationController
 
 	def uploadfile
 		upload = params[:images]
-
 		filepath = Rails.root.join('public', 'img', upload[0].original_filename)
 
 		File.open(filepath, 'wb') do |file|
@@ -61,7 +57,6 @@ class EntriesController < ApplicationController
 		end
 		render status: 200, json: '{"good":"good"}'
 	end
-
 
 end
 

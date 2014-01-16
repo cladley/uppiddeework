@@ -17,7 +17,9 @@ myControllers.controller('mainController', ['$scope', 'mockJournalEntries', func
 }]);
 
 
-myControllers.controller('publicController', ['$scope', 'auth', 'journalEntries', 'continual_record_fetcher', function($scope,auth, journalEntries, continual_record_fetcher){
+myControllers.controller('publicController', ['$scope', 'auth', 
+												'journalEntries', 'continual_record_fetcher', 
+												 function($scope,auth, journalEntries, continual_record_fetcher){
 		// Todo : Load all entries on page load - check cache first.
 		//      : start timer to check server for new entries (60 secs)
 		//      : animate new entries in - flash or something
@@ -56,9 +58,7 @@ myControllers.controller('publicController', ['$scope', 'auth', 'journalEntries'
 
 
 		$scope.$on('categoryfilter:changed', function(evt,data){
-		
 			$scope.cats = data.categories;
-
 		});
 
 		$scope.cats = {
@@ -118,7 +118,7 @@ myControllers.controller('addEntryController', ['$scope','UserLoggedIn', '$http'
 		};
 
 
-		// Form related methods;
+		// Form validation related methods;
 		$scope.canSave = function(){
 			return $scope.journalForm.$dirty && $scope.journalForm.$valid;
 		};
@@ -133,10 +133,6 @@ myControllers.controller('addEntryController', ['$scope','UserLoggedIn', '$http'
 		$scope.showError = function(ngModelController, error){
 			return ngModelController.$error[error];
 		};
-
-
-
-
 
 		// Use the service to get all journal entries from the server
 		// Only get ones that have been marked as published

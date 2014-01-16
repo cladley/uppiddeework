@@ -76,12 +76,24 @@ div.new-journal .right-column p:first-child a{
 #addPhotoUpload{
 	/*background-color: yellow;*/
 	float:right;
+	position:relative;
 }
 
 
-#addPhotoUpload a{
-	font-size: 1.25em;
+#addPhotoUpload input[type=file]{
+	float: right;
+	opacity: 0;
+	width:130px;
+	position: absolute;	
 }
+
+#addPhotoUpload input[type=file]:hover + h2{
+	cursor: pointer;
+	color:gray;
+}
+
+
+
 
 #addPhotoUpload img{
 	position: relative;
@@ -92,6 +104,13 @@ div.new-journal .right-column p:first-child a{
 #add-new-journal h2{
 	font-size: 1.7em;
 }
+
+#addPhotoUpload h2{
+	color:white;
+	font-size: 1.3em;
+	padding-top: 2px;
+}
+
 
 #add-new-journal header{
 	margin-bottom: 6px;
