@@ -1,11 +1,10 @@
 div.new-journal .left-column {
-  background-color: red;
-  width: 400px;
+  width: 430px;
   float: left; }
 
 div.new-journal .right-column {
   /*	background-color: green;*/
-  width: 314px;
+  width: 264px;
   float: right; }
 
 div.new-journal .right-column a {
@@ -23,18 +22,20 @@ div.new-journal .right-column p:first-child a {
   margin-bottom: 14px; }
 
 #add-new-journal {
-  width: 275px;
   background-color: #999999;
   font-family: 'HelveticaThin', sans-serif;
   /*font-weight: bold;*/
   padding-left: 30px;
-  padding-right: 30px;
+  padding-right: 32px;
   padding-top: 10px;
   padding-bottom: 12px; }
   #add-new-journal img.image-preview {
     margin-top: 16px;
     margin-right: 10px;
     float: right; }
+  #add-new-journal textarea {
+    width: 100%;
+    resize: none; }
 
 #add-new-journal a {
   text-decoration: none;
@@ -88,12 +89,8 @@ div.new-journal .right-column p:first-child a {
 #add-new-journal header {
   margin-bottom: 6px; }
 
-textarea {
-  width: auto;
-  resize: none; }
-
 #add-new-journal input[type="text"] {
-  width: 270px;
+  width: 100%;
   padding-top: 6px;
   padding-bottom: 6px; }
 

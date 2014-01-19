@@ -25,7 +25,7 @@
 						<input ng-model="journalEntry.tags" type="text" placeholder="Tags" ng-minlength="3" ng-maxlength="10" name="tags" />
 					</div>
 					
-						<img class="image-preview" ng-src="{{ selected_image }}" width="50" height="50">
+						<img class="image-preview" ng-src="{{ selected_image }}" width="80" height="80">
 					<ul>
 						<li>
 							<fancy-input type="radio" check-id="new_wellbeing" is-checked="journalEntry.category"
@@ -76,7 +76,9 @@
 				<ul class="journal-tab-list">
 					<li ng-repeat="entry in my_entries track by $index" >
 				
-						<div journal-tab journal-entry="entry" ng-click="show_detail(entry.id)"></div>
+						<!-- <div journal-tab journal-entry="entry" ng-click="show_detail(entry.id)"></div> -->
+						<div log-card entry="entry" type="{{ entry.type }}">
+						</div>
 					</li>
 				</ul>
 			</div>

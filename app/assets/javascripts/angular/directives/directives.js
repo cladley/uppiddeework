@@ -256,6 +256,7 @@ myDirectives.directive('logCard', function(assetsService){
 			'click' : '&'
 		},
 		link : function(scope,elem,attr){
+	
 
 			scope.path = assetsService.path('images');
 			if(typeof scope.entry === 'undefined' || scope.entry === ''){
@@ -269,6 +270,10 @@ myDirectives.directive('logCard', function(assetsService){
 					'updated' : '2014-01-11 23:12:30', 
 					'extra' : '660 calories'
 				};
+			}
+
+			if(typeof scope.entry.card_type === 'undefined' || scope.entry.card_type === ''){
+				scope.entry.card_type = 'standard';
 			}
 
 			elem.bind('click', function(e){
