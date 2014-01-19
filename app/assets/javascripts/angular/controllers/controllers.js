@@ -122,8 +122,9 @@ myControllers.controller('addEntryController', ['$scope','UserLoggedIn', '$http'
 
 			var reader = new FileReader();
 			reader.onload = function(e){
+				
 					$scope.$apply(function(){
-						$scope.yoimage =  e.target.result;
+						$scope.selected_image =  e.target.result;
 					});
 			};
 

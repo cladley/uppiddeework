@@ -1,177 +1,129 @@
+div.new-journal .left-column {
+  background-color: red;
+  width: 400px;
+  float: left; }
 
-div.new-journal .left-column{
-/*	background-color: red;*/
-	width:400px;
-	float: left;
-}
+div.new-journal .right-column {
+  /*	background-color: green;*/
+  width: 314px;
+  float: right; }
 
-div.new-journal .right-column{
-/*	background-color: green;*/
-	width: 314px;
-	float:right;
-}
+div.new-journal .right-column a {
+  text-decoration: none;
+  color: #666666;
+  font-size: 1.4em;
+  display: inline-block;
+  padding-bottom: 4px; }
 
-div.new-journal .right-column a{
-	text-decoration: none;
-	color:#666666;
-	font-size: 1.4em;
-	display: inline-block;
-	padding-bottom: 4px;
-}
+div.new-journal .right-column a:hover {
+  color: lightgray; }
 
+div.new-journal .right-column p:first-child a {
+  font-size: 2.0em;
+  margin-bottom: 14px; }
 
+#add-new-journal {
+  width: 275px;
+  background-color: #999999;
+  font-family: 'HelveticaThin', sans-serif;
+  /*font-weight: bold;*/
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 12px; }
+  #add-new-journal img.image-preview {
+    margin-top: 16px;
+    margin-right: 10px;
+    float: right; }
 
+#add-new-journal a {
+  text-decoration: none;
+  color: white; }
 
-div.new-journal .right-column a:hover{
-	color:lightgray;
-}
+#add-new-journal li {
+  height: 26px; }
 
-div.new-journal .right-column p:first-child a{
-	font-size: 2.0em;
-	
-	margin-bottom: 14px;
-}
+#add-new-journal li span {
+  position: relative;
+  top: 10px;
+  left: -8px;
+  color: white; }
 
+#add-new-journal .success {
+  border: 2px solid green; }
 
+#add-new-journal .error {
+  border: 2px solid red; }
 
+#addPhotoUpload {
+  /*background-color: yellow;*/
+  float: right;
+  position: relative; }
 
-#add-new-journal{
-	width: 275px;
-	background-color: #999999;
+#addPhotoUpload input[type=file] {
+  float: right;
+  opacity: 0;
+  width: 130px;
+  position: absolute; }
 
-	font-family: 'HelveticaThin', sans-serif;
-	/*font-weight: bold;*/
-	padding-left: 30px;
-	padding-right: 30px;
-	padding-top: 10px;
-	padding-bottom: 12px;
-}
+#addPhotoUpload input[type=file]:hover + h2 {
+  cursor: pointer;
+  color: gray; }
 
-#add-new-journal a{
-	text-decoration: none;
-	color: white;
-}
+#addPhotoUpload img {
+  position: relative;
+  top: 3px; }
 
-#add-new-journal li{
-	height:26px;
-}
+#add-new-journal h2 {
+  font-size: 1.7em; }
 
-#add-new-journal li span{
-	position:relative;
-	top:10px;
-	left:-8px;
-	color:white;
-}
+#addPhotoUpload h2 {
+  color: white;
+  font-size: 1.3em;
+  padding-top: 2px; }
 
-#add-new-journal .success{
-	border: 2px solid green;
-}
+#addPhotoUpload .image-preview {
+  float: right; }
 
-#add-new-journal .error{
-	border: 2px solid red;
-}
+#add-new-journal header {
+  margin-bottom: 6px; }
 
+textarea {
+  width: auto;
+  resize: none; }
 
-#addPhotoUpload{
-	/*background-color: yellow;*/
-	float:right;
-	position:relative;
-}
+#add-new-journal input[type="text"] {
+  width: 270px;
+  padding-top: 6px;
+  padding-bottom: 6px; }
 
+#add-new-journal footer {
+  text-align: right; }
 
-#addPhotoUpload input[type=file]{
-	float: right;
-	opacity: 0;
-	width:130px;
-	position: absolute;	
-}
+#add-new-journal footer button {
+  border: none;
+  background: none;
+  color: white;
+  padding: 0; }
 
-#addPhotoUpload input[type=file]:hover + h2{
-	cursor: pointer;
-	color:gray;
-}
+#add-new-journal footer button:first-child:after {
+  content: '|';
+  padding-left: 6px; }
 
+.journal-tab-list {
+  margin-top: 26px; }
 
+.journal-tab-list li {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  -webkit-transition: -webkit-transform .3s ease;
+  -moz-transition: -moz-transform .3s ease;
+  -ms-transition: -ms-transform .3s ease;
+  transition: transform .3s ease; }
 
-
-#addPhotoUpload img{
-	position: relative;
-	top:3px;
-}
-
-
-#add-new-journal h2{
-	font-size: 1.7em;
-}
-
-#addPhotoUpload h2{
-	color:white;
-	font-size: 1.3em;
-	padding-top: 2px;
-}
-
-#addPhotoUpload .image-preview{
-	float:right;
-}
-
-
-#add-new-journal header{
-	margin-bottom: 6px;
-}
-
-textarea{
-	width: auto;
-	resize: none;
-}
-
-
-#add-new-journal input[type="text"]{
-	width: 270px;
-	padding-top: 6px;
-	padding-bottom: 6px;
-}
-
-
-
-
-#add-new-journal footer{
-	text-align: right;
-}
-
-#add-new-journal footer button{
-	border: none;
-	background: none;
-	color : white;
-	padding: 0;
-}
-
-#add-new-journal footer button:first-child:after{
-	content: '|';
-	padding-left: 6px;
-
-}
-
-
-.journal-tab-list{
-	margin-top: 26px;
-}
-
-
-
-.journal-tab-list li{
-	margin-top: 8px;
-	margin-bottom: 8px;
-	-webkit-transition: -webkit-transform .3s ease;
-	-moz-transition: -moz-transform .3s ease;
-	-ms-transition: -ms-transform .3s ease;
-	transition: transform .3s ease;
-}
-
-
-.journal-tab-list li:hover{
-	cursor: pointer;
-	-webkit-transform: scale(1.03);
-	-moz-transform:scale(1.03);
-	-ms-transform:scale(1.03);
-	transform:scale(1.03);
-}
+.journal-tab-list li:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+  -ms-transform: scale(1.03);
+  transform: scale(1.03); }

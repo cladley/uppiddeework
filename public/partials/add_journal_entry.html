@@ -25,7 +25,7 @@
 						<input ng-model="journalEntry.tags" type="text" placeholder="Tags" ng-minlength="3" ng-maxlength="10" name="tags" />
 					</div>
 					
-						<img class="image-preview" src="img/running.jpg" width="50" height="50">
+						<img class="image-preview" ng-src="{{ selected_image }}" width="50" height="50">
 					<ul>
 						<li>
 							<fancy-input type="radio" check-id="new_wellbeing" is-checked="journalEntry.category"
