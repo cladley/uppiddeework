@@ -5,69 +5,6 @@
 var myDirectives = angular.module('journal.directives', []);
 
 
-
-//Unused directive - to remove
-myDirectives.directive('fancyCheckbox', function(){
-		return {
-			restrict : 'EA', 
-			replace : true,
-			template : '<div class="fancyCheckbox">' +
-						'<input ng-model="isChecked" type="checkbox" id="{{ checkId }}" name="{{ checkName }}" value="{{ checkValue }}" />' +
-						'<label for="{{ checkId }}" ></label>' +
-						'</div>',
-			scope : {
-				colour : '@',
-				checkId : '@', 
-				checkValue : '@', 
-				checkName : '@',
-				isChecked : '=',
-				scale : '@'
-			},
-			link : function(scope, elem, attrs){
-
-				function randomString(length, chars) {
-    			var result = '';
-   				for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
-    			return result;
-				}
-
-				// if(typeof scope.checkId === 'undefined' || scope.checkId === ''){
-				// 	// create a random id for the checkbox
-				// 		var randId = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
-				// 		var checkbox = elem.find('input')[0];
-				// 		checkbox.id = randId;
-				// 		var label = elem.find('label')[0];
-				// 		label.htmlFor = randId;
-				// }
-
-				var chkbox = elem.find('input')[0];
-
-				
-				if(typeof scope.scale !== 'undefined' || scope.scale !== ''){
-					elem.css('-webkit-transform' , 'scale(' + scope.scale + ')');
-					elem.css('-moz-transform' , 'scale(' + scope.scale + ')');
-					elem.css('-ms-transform' , 'scale(' + scope.scale + ')');
-					elem.css('transform' , 'scale(' + scope.scale + ')');
-				}
-
-				var spotColourClass;
-				var valid_colours = ['blue', 'green', 'gray', 'purple', 
-									'blue', 'orange', 'charcoal', 'light',
-									'yellow', 'red', 'pink', 'turquoise'];
-
-		
-				if(valid_colours.indexOf(scope.colour) !== -1){					
-					spotColourClass = scope.colour + "spot";
-				}else{
-					spotColourClass = 'greenspot';
-				}
-
-				elem.addClass(spotColourClass);
-			}
-		};
-	});
-
-
 // Directive to display journal information in card form
 // Like twitter cards
 myDirectives.directive('journalCard', function(){
@@ -187,8 +124,9 @@ myDirectives.directive('fancyInput', function(){
 	});
 
 
-
-
+// column-panel
+// Creates a N column layout using ul tags
+// User selects the number of columns through the 'cols' attribute
 myDirectives.directive('columnPanel', function($filter){
 	return {
 		restrict : 'EA', 
@@ -259,6 +197,12 @@ myDirectives.directive('columnPanel', function($filter){
 
 
 
+
+
+
+// select-file 
+// Attach to input[type=file]
+// Calls 'fileSelected' with file object selected by user
 myDirectives.directive('selectFile', function(){
 	return {
 		restrict : "A", 
@@ -266,11 +210,71 @@ myDirectives.directive('selectFile', function(){
 			'fileSelected': '&'
 		},
 		link : function(scope,elem,attr){
+			// elem will be an element of type input[type=file]
 			elem.bind("change", function(e){
 				var fileObj = (e.srcElement || e.target).files[0];
-				
 				scope.fileSelected({'fileObj': fileObj});
 			});
 		}
+	};
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+myDirectives.directive('logCard', function(assetsService){
+	return {
+		restrict : 'EA', 
+		replace: true,
+		templateUrl : 'partials/cards/logcard.html', 
+		scope : {
+			'entry' : '=?',
+			'type' : '@', 
+			'click' : '&'
+		},
+		link : function(scope,elem,attr){
+
+			scope.path = assetsService.path('images');
+			if(typeof scope.entry === 'undefined' || scope.entry === ''){
+				// Create some default data to be injected into the template
+				scope.entry = {
+					'id' : '999', 
+					'poster_id' : '123', 
+					'category' : 'activity', 
+					'description' : 'Yooooo ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, tenetur, et, in, sapiente ratione amet reiciendis a enim excepturi amet.',
+					'posted' : 	'2014-01-11 19:43:26', 
+					'updated' : '2014-01-11 23:12:30', 
+					'extra' : '660 calories'
+				};
+			}
+
+			elem.bind('click', function(e){
+				scope.click({ "entry" : scope.entry });
+			});
+
+		}// end of link
 	};
 });

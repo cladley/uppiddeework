@@ -127,10 +127,7 @@ myControllers.controller('addEntryController', ['$scope','UserLoggedIn', '$http'
 					});
 			};
 
-
-
 			reader.readAsDataURL(data);
-
 		};
 
 
@@ -197,4 +194,53 @@ myControllers.controller('detailsController', ['$scope', '$routeParams', 'UserLo
 			$location.path('/public')
 		}
 
-	}]);
+}]);
+
+
+myControllers.controller('testController', ['$scope', function($scope){
+
+	$scope.title = "here";
+
+
+	$scope.entry = {
+		'id' : '435', 
+		'poster_id' : '123', 
+		'type' : 'log',
+		'category' : 'wellbeing',
+		'description' : 'ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, tenetur, et, in, sapiente ratione amet reiciendis a enim excepturi amet.',
+		'posted' : '2014-01-11 19:43:26', 
+		'updated' : '2014-01-11 23:12:30', 
+		'extra' : '660 calories'
+	};
+
+
+
+	$scope.photo_entry = {
+		'id' : '235', 
+		'poster_id' : '324', 
+		'type' : 'photo',
+		'category' : 'community',
+		'description' : 'ipsum dolor sit amet. In, sapiente ratione amet reiciendis a enim excepturi amet.',
+		'image' : 'running.jpg',
+		'posted' : '2014-01-11 19:43:26', 
+		'updated' : '2014-01-11 23:12:30', 
+		'extra' : '620 calories'
+	};
+
+
+	$scope.goal_entry = {
+		'id' : '341', 
+		'poster_id' : '324', 
+		'type' : 'goal',
+		'category' : 'feedback',
+		'description' : 'In, sapiente ratione amm excepturi amet.',
+		'posted' : '2014-01-11 19:43:26', 
+		'updated' : '2014-01-11 23:12:30', 
+		'extra' : 'A++'
+	};
+
+
+
+
+}]);
+

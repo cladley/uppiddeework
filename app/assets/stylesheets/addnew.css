@@ -110,6 +110,10 @@ div.new-journal .right-column p:first-child a{
 	padding-top: 2px;
 }
 
+#addPhotoUpload .image-preview{
+	float:right;
+}
+
 
 #add-new-journal header{
 	margin-bottom: 6px;

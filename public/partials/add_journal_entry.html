@@ -1,9 +1,7 @@
 	
 	<div class="new-journal">
 		<div class="left-column">
-	
 			<div id="add-new-journal" >
-
 				<form name="journalForm" enctype="multipart/form-data" novalidate>
 					<header>
 						<div id="addPhotoUpload">
@@ -26,6 +24,8 @@
 					<div>
 						<input ng-model="journalEntry.tags" type="text" placeholder="Tags" ng-minlength="3" ng-maxlength="10" name="tags" />
 					</div>
+					
+						<img class="image-preview" src="img/running.jpg" width="50" height="50">
 					<ul>
 						<li>
 							<fancy-input type="radio" check-id="new_wellbeing" is-checked="journalEntry.category"
@@ -62,13 +62,10 @@
 					</ul>
 					
 					<footer>
-					
 						<button ng-disabled="!canSave()" ng-click="save()">Save</button>
 						<button>Cancel</button>
-										
 					</footer>
 				</form>
-
 				<pre ng-bind="journalEntry | json"></pre>
 			</div>
 
@@ -90,7 +87,7 @@
 	</div> <!-- End of left-column -->
 
 	<div class="right-column">
-			<img ng-src="{{ yoimage }}"  width="300" height="300"/>
+		
 		<p>
 			<a href="#" ng-click="goBack()">Back</a>
 		</p>

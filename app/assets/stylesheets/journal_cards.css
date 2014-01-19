@@ -1,0 +1,94 @@
+@font-face {
+  font-family: 'HelveticaThin';
+  src: url("../font/helveticathin.eot");
+  /* IE9 Compat Modes */
+  src: url("../font/helveticathin.eot?#iefix") format("embedded-opentype"), url("../font/helveticathin.woff") format("woff"), url("../font/helveticathin.ttf") format("truetype"), url("../font/helveticathin.svg#svgFontName") format("svg");
+  /* Legacy iOS */ }
+
+div.j-card {
+  font-family: 'HelveticaThin', sans-serif;
+  color: white;
+  position: relative;
+  width: 430px;
+  font-size: .8em;
+  /* remove height when we have categories classes sorted */ }
+
+div.j-card header {
+  height: 210px;
+  overflow: hidden; }
+
+div.j-card header img {
+  width: 100%; }
+
+div.j-card .j-card-content {
+  height: 80px; }
+
+div.j-card .icon {
+  border: 1px solid white;
+  border-radius: 100%;
+  padding: 6px;
+  position: relative;
+  left: 14px; }
+
+div.j-card.log, div.j-card.standard {
+  height: 80px;
+  overflow: hidden; }
+
+.j-card-icon-container {
+  width: 15%;
+  float: left; }
+
+.j-card-entry-container {
+  float: left;
+  width: 65%; }
+
+.j-card-extra-container {
+  width: 20%;
+  float: left;
+  height: 80px; }
+
+.j-card-icon-container, .j-card-entry-container {
+  padding-top: 22px; }
+
+.j-card-extra-container p {
+  padding-top: 16px;
+  padding-left: 4px; }
+
+.j-card-entry-container a {
+  position: absolute;
+  bottom: 5px;
+  text-decoration: none;
+  color: white; }
+
+div.j-card.reports {
+  background: #f1c40d; }
+
+div.j-card.reports .j-card.extra-container {
+  background-color: #c19d0a; }
+
+div.j-card.wellbeing {
+  background: #2ab8e9; }
+
+div.j-card.wellbeing .j-card-extra-container {
+  background-color: #159ccb; }
+
+div.j-card.development {
+  background: #e74c3b; }
+
+div.j-card.feedback {
+  background: #22bc9c; }
+
+div.j-card.uppiddee {
+  background: #8bc53f; }
+
+div.j-card.community {
+  background: #e56c19; }
+
+div.j-card.creativity {
+  background: #e671b5; }
+
+div.j-card.productivity {
+  background: #22bc9c; }
+
+div.j-card.activity {
+  background: #e74c3b; }

@@ -8,19 +8,19 @@ angular.module('journal.filters', []).
 		return function(category){
 			switch(category.toLowerCase()){
 				case "activity":
-					return "img/running_white.png";
+					return "img/icons/running_white.png";
 				break;
 				case "productivity":
-					return "img/develop_white.png";
+					return "img/icons/develop_white.png";
 				break;
 				case "community":
-					return "img/support_white.png";
+					return "img/icons/support_white.png";
 				break;
 				case "wellbeing":
-					return "img/walking_white.png";
+					return "img/icons/walking_white.png";
 				break;
 				default:
-					return "img/general_white.png";
+					return "img/icons/general_white.png";
 			}
 		}
 	})

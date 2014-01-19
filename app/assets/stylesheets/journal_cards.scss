@@ -1,0 +1,171 @@
+@font-face {
+  font-family: 'HelveticaThin';
+  src: url("../font/helveticathin.eot");
+  /* IE9 Compat Modes */
+  src: url("../font/helveticathin.eot?#iefix") format("embedded-opentype"), url("../font/helveticathin.woff") format("woff"), url("../font/helveticathin.ttf") format("truetype"), url("../font/helveticathin.svg#svgFontName") format("svg");
+  /* Legacy iOS */ }
+
+
+$red : #e74c3b;
+$green : #8bc53f;
+$yellow : #f1c40d;
+$turquoise : #22bc9c;
+$pink : #e671b5;
+$purple : #8e44ad;
+$gray : #666666;
+$blue : #2ab8e9;
+$orange : #e56c19;
+$charcoal : #333333;
+$light : #f1f1f2;
+
+$development : $red;
+$wellbeing : $blue;
+$reports : $yellow;
+$feedback : $turquoise;
+$uppiddee : $green;
+$community : $orange;
+$creativity : $pink;
+$activity : $red;
+$productivity : $turquoise;
+
+
+div.j-card{
+	font-family: 'HelveticaThin', sans-serif;
+	color:white;
+	position: relative;
+	width: 430px;
+	font-size: .8em;
+
+	/* remove height when we have categories classes sorted */
+}
+
+div.j-card header{
+	height : 210px;
+	overflow: hidden;
+}
+
+div.j-card header img{
+	width: 100%;
+}
+
+
+div.j-card .j-card-content{
+	height: 80px;
+}
+
+
+div.j-card .icon{
+	border: 1px solid white;
+	border-radius: 100%;
+	padding: 6px; 
+	position: relative;
+	left:14px;
+}
+
+div.j-card.log, div.j-card.standard{
+	height: 80px;
+	overflow: hidden;
+}
+
+.j-card-icon-container{
+	width: 15%;
+	float:left;
+}
+
+.j-card-entry-container{
+	float:left;
+	width: 65%;
+}
+
+.j-card-extra-container{
+	width: 20%;
+	float:left;
+	height:80px;
+}
+
+
+.j-card-icon-container, .j-card-entry-container{
+	padding-top: 22px;
+}
+
+
+.j-card-extra-container p{
+	padding-top: 16px;
+	padding-left: 4px;
+}
+
+.j-card-extra-container .date {
+
+}
+
+.j-card-entry-container a{
+	position: absolute;
+	bottom: 5px;
+	text-decoration: none;
+	color: white;
+}
+
+div.j-card.reports {
+  background: $reports;
+}
+
+div.j-card.reports .j-card.extra-container{
+	background-color: darken($reports, 10%);
+}
+
+div.j-card.wellbeing{
+	background : $wellbeing;
+}
+
+div.j-card.wellbeing .j-card-extra-container{
+	background-color: darken($wellbeing, 10%);
+}
+
+div.j-card.development{
+	background: $development;
+}
+
+div.j-card.feedback{
+	background: $feedback;
+}
+
+div.j-card.uppiddee{
+	background: $uppiddee; 
+}
+
+div.j-card.community{
+	background: $community;
+}
+
+div.j-card.creativity{
+	background: $creativity;
+}
+
+div.j-card.productivity{
+	background: $productivity;
+}
+
+div.j-card.activity{
+	background: $activity;
+}
+
+
+div.j-card.log{
+
+}
+
+div.j-card.standard{
+
+}
+
+div.j-card.photo{
+
+}
+
+div.j-card.report{
+
+}
+
+div.j-card.goal{
+
+}

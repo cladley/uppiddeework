@@ -13,6 +13,20 @@ myServices.factory('mockJournalEntries',function($http){
 	});
 
 
+myServices.factory('assetsService', function(){
+	return {
+		path : function(type){
+			switch(type){
+				case "images":
+					return 'img';
+					break;
+			}
+		}
+	};
+
+});
+
+
 myServices.factory('journalEntries', function($http,$q){
 		return {
 			getAll : function(){

@@ -1,0 +1,20 @@
+<div class="j-card {{ entry.category }}">
+	<header ng-show="{{ entry.type === 'photo' }}">
+		<img src="{{ path }}/{{ entry.image }}" alt="running"  />
+	</header>
+	<div class="j-card-content">
+		<div class="j-card-icon-container">
+			<img class="icon" height="20" width="20" alt="{{ entry.category }}" ng-src="{{ entry.category | getCategoryIcon }}" /> 
+		</div>
+		<div class="j-card-entry-container">
+			<p>{{ entry.description | limitTo: 140 }}</p>    
+			<span ng-show="{{ entry.type === 'goal' }}">
+				<a href="">share</a>
+			</show>
+		</div>
+		<div class="j-card-extra-container">
+			<p>{{ entry.extra }}</p> 
+			<p class="date">4 days ago</p>    
+		</div>
+	</div>
+</div>
