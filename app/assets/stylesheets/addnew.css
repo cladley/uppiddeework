@@ -1,6 +1,8 @@
 div.new-journal .left-column {
   width: 430px;
-  float: left; }
+  float: left;
+  position: relative;
+  top: -340px; }
 
 div.new-journal .right-column {
   /*	background-color: green;*/
@@ -125,52 +127,24 @@ div.new-journal .right-column p:first-child a {
   -ms-transform: scale(1.03);
   transform: scale(1.03); }
 
-.show-form-animation.ng-enter {
+.move-class-add, .move-class-remove {
+  -webkit-transition: all ease 0.4s;
+  -moz-transition: all ease 0.4s;
+  -o-transition: all ease 0.4s;
+  transition: all ease 0.4s; }
+
+.move-class,
+.move-class-add.move-class-add-active {
+  top: 0px !important; }
+
+.journal-tab-list .add-items {
   -webkit-transition: 0.5s linear all;
-  transition: 0.5s linear all;
+  -moz-transition: 0.5s linear all;
+  -o-transition: 0.5s linear all;
+  transition: 0.5s linear all; }
+
+.journal-tab-list .add-items.ng-enter {
   opacity: 0; }
 
-.show-form-animation.ng-enter.ng-enter-active {
+.journal-tab-list .add-items.ng-enter.ng-enter-active {
   opacity: 1; }
-
-@keyframes hideit {
-  from {
-    opacity: 1; }
-
-  to {
-    opacity: 0; } }
-
-@-webkit-keyframes hideit {
-  from {
-    opacity: 1; }
-
-  to {
-    opacity: 0; } }
-
-@keyframes showit {
-  from {
-    opacity: 0; }
-
-  to {
-    opacity: 1; } }
-
-@-webkit-keyframes showit {
-  from {
-    opacity: 0; }
-
-  to {
-    opacity: 1; } }
-
-.slide {
-  opacity: 1; }
-
-.off {
-  opacity: 0; }
-
-.slide-remove {
-  -webkit-animation: 0.5s hideit;
-  animation: 0.5s hideit; }
-
-.slide-add {
-  -webkit-animation: 0.5s showit;
-  animation: 0.5s showit; }

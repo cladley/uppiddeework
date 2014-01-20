@@ -18,7 +18,7 @@ myDirectives.directive('journalCard', function(){
 				journalEntry : '='
 			},
 			link : function(scope,elem,attrs){
-				
+		
 				function getRandomInt (min, max) {
     				return Math.floor(Math.random() * (max - min + 1)) + min;
 				}
@@ -256,7 +256,7 @@ myDirectives.directive('logCard', function(assetsService){
 			'click' : '&'
 		},
 		link : function(scope,elem,attr){
-	
+			
 
 			scope.path = assetsService.path('images');
 			if(typeof scope.entry === 'undefined' || scope.entry === ''){

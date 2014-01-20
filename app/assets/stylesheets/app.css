@@ -31,6 +31,9 @@ html, body {
   border-bottom: 1px solid #acacac;
   padding-top: 20px;
   height: 109px;
+  background-color: white;
+  position: relative;
+  z-index: 99;
 
 }
 
@@ -55,6 +58,7 @@ html, body {
 .journal #sidebar {
 
   position: relative;
+  z-index: 100;
   background-image: url(city.jpg);
   background-size: cover;
   padding: 36px;

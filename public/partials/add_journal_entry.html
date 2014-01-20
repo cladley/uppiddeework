@@ -1,7 +1,6 @@
 	
 	<div class="new-journal">
-		<div class="left-column"  ng-class="{ slide:showForm,
-																					 off:!showForm }">
+		<div class="left-column"  ng-class="myCssVar">
 			<div id="add-new-journal" >
 				<form name="journalForm" enctype="multipart/form-data" novalidate>
 					<header>
@@ -75,24 +74,24 @@
 			<div class="my-journal-entries">
 	
 				<ul class="journal-tab-list">
-					<li ng-repeat="entry in my_entries track by $index" >
+					<li ng-repeat="entry in my_entries track by $index" class="add-items">
 				
 						<!-- <div journal-tab journal-entry="entry" ng-click="show_detail(entry.id)"></div> -->
-						<div log-card entry="entry" type="{{ entry.type }}">
+						<div log-card entry="entry" type="{{ entry.card_type }}">
 						</div>
 					</li>
 				</ul>
 			</div>
 
 			<pre ng-bind="journalEntry | json"></pre>
-			<!-- <pre ng-bind="entry | json"></pre> -->
+
 
 	</div> <!-- End of left-column -->
 
 	<div class="right-column">
 		
 		<p>
-			<a href="" ng-click="showAddForm()">Back</a>
+			<a href="" ng-click="changeClass()">Back</a>
 		</p>
 		<p>
 			<a href="#">Add Feedback</a>

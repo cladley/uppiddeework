@@ -6,7 +6,8 @@ angular.module('journalApp', [
 	'journal.directives',
 	'journal.services', 
 	'journal.controllers',
-	'journal.filters' 
+	'journal.filters'
+	// 'journal.animations'
 ]).
 config(['$routeProvider', function($routeProvider){
 	$routeProvider.when('/', 

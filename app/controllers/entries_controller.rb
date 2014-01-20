@@ -4,36 +4,30 @@ class EntriesController < ApplicationController
 
 
 	def index 
-		#debugger
-		
-		# @entries = Employee.all
 		@entries = Entry.all
 		# respond_with @entries(:include => :Entry)
 		respond_to do |format|
 			format.json{render :json => @entries.to_json(:include => :employee )}
-		end
-		
+		end		
 	end
 
 
 	def create
-		debugger
+		filename = ""
+		card_type = "standard"
 		emp = Employee.find_by(:id => params[:id])
-	
+
 		if !emp.nil?
 			# Get uploaded file 
-			upload = params[:images]
-			filename = upload[0].original_filename
-			filepath = Rails.root.join('public', 'img', filename)
-
-			File.open(filepath, 'wb') do |file|
-				file.write(upload[0].read)
+			if params[:images]
+				save_file params[:images]
+				filename = params[:images][0].original_filename
+				card_type = 'photo'
 			end
-
 
 			entry = emp.entries.create(:category => params[:category], 
 																 :description => params[:description], 
-																 :pic => filename, :card_type => 'photo')
+																 :pic => filename, :card_type => card_type)
 
 			render status: 200, json: entry.to_json
 		else
@@ -51,15 +45,16 @@ class EntriesController < ApplicationController
 		end
 	end
 
-	def uploadfile
-		upload = params[:images]
-		filepath = Rails.root.join('public', 'img', upload[0].original_filename)
 
-		File.open(filepath, 'wb') do |file|
-			file.write(upload[0].read)
+	private 
+		# Todo : error handling
+		def save_file(upload)
+			filename = upload[0].original_filename
+			filepath = Rails.root.join('public', 'img', filename)
+
+			File.open(filepath, 'wb') do |file|
+				file.write(upload[0].read)
+			end
 		end
-		render status: 200, json: '{"good":"good"}'
-	end
-
 end
 

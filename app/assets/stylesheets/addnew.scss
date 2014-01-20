@@ -3,8 +3,8 @@ div.new-journal .left-column{
 	// background-color: red;
 	width:430px;
 	float: left;
-	// position: relative;
-	// top:-340px;
+	position: relative;
+	top:-340px;
 }
 
 div.new-journal .right-column{
@@ -21,9 +21,6 @@ div.new-journal .right-column a{
 	padding-bottom: 4px;
 }
 
-
-
-
 div.new-journal .right-column a:hover{
 	color:lightgray;
 }
@@ -33,9 +30,6 @@ div.new-journal .right-column p:first-child a{
 	
 	margin-bottom: 14px;
 }
-
-
-
 
 #add-new-journal{
 	// width: 275px;
@@ -194,58 +188,35 @@ div.new-journal .right-column p:first-child a{
 // CSS3 Transitions
 // For showing an element using ng-show/ng-hide
 
-.show-form-animation.ng-enter{
-	 -webkit-transition:0.5s linear all;
+.move-class-add, .move-class-remove{
+	// -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.4s;
+	// 	  -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.4s;
+	// 	  -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.4s;
+	// 	  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.4s;
+
+	-webkit-transition:all ease 0.4s;
+		  -moz-transition:all ease 0.4s;
+		  -o-transition:all ease 0.4s;
+		  transition:all ease 0.4s;
+
+}
+
+.move-class,
+.move-class-add.move-class-add-active{
+	top:0px !important;
+}
+
+.journal-tab-list .add-items{
+	-webkit-transition:0.5s linear all;
+  -moz-transition:0.5s linear all;
+  -o-transition:0.5s linear all;
   transition:0.5s linear all;
-  opacity: 0;
 }
 
-.show-form-animation.ng-enter.ng-enter-active{
-	opacity: 1;
-}
-
-
-@keyframes hideit {
-  from { opacity:1; }
-  to { opacity:0; }
-}
-
-@-webkit-keyframes hideit {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
-
-@keyframes showit {
-  from { opacity:0; }
-  to { opacity:1; }
-}
-
-@-webkit-keyframes showit {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-
-.slide{
-	opacity: 1;
-}
-
-.off{
+.journal-tab-list .add-items.ng-enter{
 	opacity: 0;
 }
 
-.slide-remove{
-	-webkit-animation:0.5s hideit;
-  animation:0.5s hideit;
+.journal-tab-list .add-items.ng-enter.ng-enter-active{
+	opacity: 1;
 }
-
-
-.slide-add{
-
--webkit-animation:0.5s showit;
-  animation:0.5s showit;
-
-}
-
-

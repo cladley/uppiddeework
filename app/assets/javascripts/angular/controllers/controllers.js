@@ -94,13 +94,13 @@ myControllers.controller('sidebarController', ['$scope', '$rootScope', function(
 myControllers.controller('addEntryController', ['$scope','UserLoggedIn', '$http', 'journalEntries', '$location', 'user_entries_cache', function($scope,  UserLoggedIn, $http, journalEntries, $location, user_entries_cache){
 		
 		$scope.showForm = true;
-
+		$scope.myCssVar = "";
 		var formdata = new FormData();
 		var userId = UserLoggedIn.getCurrentUserId();
 
-		$scope.showAddForm = function(){
-			$scope.showForm = !$scope.showForm;
-			console.log("asdasD");
+
+		$scope.changeClass = function(){
+			$scope.myCssVar = $scope.myCssVar ? "" : "move-class";
 		};
 
 
@@ -114,16 +114,18 @@ myControllers.controller('addEntryController', ['$scope','UserLoggedIn', '$http'
 
 				journalEntries.create(userId, formdata)
 					.success(function(data, status, headers){		
-						
-						$scope.journalForm.$setPristine();
-						$scope.journalEntry = {};
-						$scope.my_entries.push(data);
-						user_entries_cache.add_entry(data);
+						// debugger;
+						// Clear the form and journalEntry Object
+						$scope.$apply(function(){
+							$scope.journalForm.$setPristine();
+							$scope.journalEntry = {};
+							$scope.my_entries.push(data);
+						});
+
+						// user_entries_cache.add_entry(data);
 					})
 					.error(function(data, status, headers){
 						// Create some logging service, which will sends error back to the server
-						
-						// For debugging only
 						alert('error');
 					});
 			}
@@ -168,7 +170,7 @@ myControllers.controller('addEntryController', ['$scope','UserLoggedIn', '$http'
 			journalEntries.getUsers(userId)
 				.success(function(data,status,headers){
 					$scope.my_entries = data;
-					user_entries_cache.set(data);
+					// user_entries_cache.set(data);
 				})
 				.error(function(data,status,headers){
 					console.log('ererrerer');
@@ -190,11 +192,12 @@ myControllers.controller('addEntryController', ['$scope','UserLoggedIn', '$http'
 		// in the cache, so load them, else fetch our 
 		// journal entries from the server, and save in cache
 		function init(){
-			if(!user_entries_cache.are_records()){
+			// debugger;
+			// if(!user_entries_cache.are_records()){
 				$scope.getEntries();
-			}else{
-				$scope.my_entries = user_entries_cache.get();
-			}
+			// }else{
+			// 	$scope.my_entries = user_entries_cache.get();
+			// }
 		}
 
 		init();
@@ -209,6 +212,11 @@ myControllers.controller('detailsController', ['$scope', '$routeParams', 'UserLo
 		}
 
 }]);
+
+
+
+
+
 
 
 myControllers.controller('testController', ['$scope', function($scope){
@@ -226,8 +234,6 @@ myControllers.controller('testController', ['$scope', function($scope){
 		'updated' : '2014-01-11 23:12:30', 
 		'extra' : '660 calories'
 	};
-
-
 
 	$scope.photo_entry = {
 		'id' : '235', 
@@ -252,9 +258,6 @@ myControllers.controller('testController', ['$scope', function($scope){
 		'updated' : '2014-01-11 23:12:30', 
 		'extra' : 'A++'
 	};
-
-
-
 
 }]);
 

@@ -23,7 +23,6 @@ myServices.factory('assetsService', function(){
 			}
 		}
 	};
-
 });
 
 
