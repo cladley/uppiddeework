@@ -17,20 +17,30 @@ class EntriesController < ApplicationController
 
 
 	def create
+		debugger
 		emp = Employee.find_by(:id => params[:id])
 	
 		if !emp.nil?
-			entry = emp.entries.create(:category => params[:category], 
-																:description => params[:description])
-			render status: 200, json: entry.to_json
+			# Get uploaded file 
+			upload = params[:images]
+			filename = upload[0].original_filename
+			filepath = Rails.root.join('public', 'img', filename)
 
+			File.open(filepath, 'wb') do |file|
+				file.write(upload[0].read)
+			end
+
+
+			entry = emp.entries.create(:category => params[:category], 
+																 :description => params[:description], 
+																 :pic => filename, :card_type => 'photo')
+
+			render status: 200, json: entry.to_json
 		else
 			respond_with '{"error" : "not found"}', :status => 404
 		end
 
 	end
-
-
 
 	def by_employee
 		emp = Employee.find_by(:id => params[:id])
@@ -39,13 +49,6 @@ class EntriesController < ApplicationController
 		else
 			respond_with '{"error" : "not found"}', :status => 404
 		end
-	end
-
-
-
-
-	def testfile
-
 	end
 
 	def uploadfile

@@ -92,15 +92,27 @@ myControllers.controller('sidebarController', ['$scope', '$rootScope', function(
 
 
 myControllers.controller('addEntryController', ['$scope','UserLoggedIn', '$http', 'journalEntries', '$location', 'user_entries_cache', function($scope,  UserLoggedIn, $http, journalEntries, $location, user_entries_cache){
-		$scope.goBack = function(){};
+		
+		$scope.showForm = true;
 
+		var formdata = new FormData();
 		var userId = UserLoggedIn.getCurrentUserId();
+
+		$scope.showAddForm = function(){
+			$scope.showForm = !$scope.showForm;
+			console.log("asdasD");
+		};
+
 
 		$scope.save = function(){
 	
 			if($scope.journalForm.$valid){
 			
-				journalEntries.create(userId, $scope.journalEntry)
+				formdata.append('description', $scope.journalEntry.description);
+				formdata.append('tags', $scope.journalEntry.tags);
+				formdata.append('category', $scope.journalEntry.category);
+
+				journalEntries.create(userId, formdata)
 					.success(function(data, status, headers){		
 						
 						$scope.journalForm.$setPristine();
@@ -129,6 +141,7 @@ myControllers.controller('addEntryController', ['$scope','UserLoggedIn', '$http'
 			};
 
 			reader.readAsDataURL(data);
+			formdata.append("images[]", data);
 		};
 
 

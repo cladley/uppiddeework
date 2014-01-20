@@ -3,6 +3,8 @@ div.new-journal .left-column{
 	// background-color: red;
 	width:430px;
 	float: left;
+	// position: relative;
+	// top:-340px;
 }
 
 div.new-journal .right-column{
@@ -186,3 +188,64 @@ div.new-journal .right-column p:first-child a{
 	-ms-transform:scale(1.03);
 	transform:scale(1.03);
 }
+
+
+
+// CSS3 Transitions
+// For showing an element using ng-show/ng-hide
+
+.show-form-animation.ng-enter{
+	 -webkit-transition:0.5s linear all;
+  transition:0.5s linear all;
+  opacity: 0;
+}
+
+.show-form-animation.ng-enter.ng-enter-active{
+	opacity: 1;
+}
+
+
+@keyframes hideit {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@-webkit-keyframes hideit {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+
+@keyframes showit {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+
+@-webkit-keyframes showit {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+.slide{
+	opacity: 1;
+}
+
+.off{
+	opacity: 0;
+}
+
+.slide-remove{
+	-webkit-animation:0.5s hideit;
+  animation:0.5s hideit;
+}
+
+
+.slide-add{
+
+-webkit-animation:0.5s showit;
+  animation:0.5s showit;
+
+}
+
+

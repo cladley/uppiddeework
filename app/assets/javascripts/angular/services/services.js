@@ -37,8 +37,24 @@ myServices.factory('journalEntries', function($http,$q){
 				return $http.get(url);
 			},
 			create : function(user_id, entry){
+
+				var token = $( 'meta[name="csrf-token"]' ).attr( 'content' );
+ 
+			  $.ajaxSetup( {
+			    beforeSend: function ( xhr ) {
+			      xhr.setRequestHeader( 'X-CSRF-Token', token );
+			    }
+			  });
+
 				var url = '/employee/' + user_id + '/entries/create';
-				return $http.post(url, entry);
+				return $.ajax({
+					url : url,
+					type: "POST",
+					data : entry,
+					processData: false,
+					contentType : false
+				});
+				// return $http.post(url, entry);
 			}
 		};
 	});
