@@ -35,7 +35,7 @@ myDirectives.directive('journalCard', function(){
 
 
 				elem.bind('click', function(){
-					console.log("CLicked");
+					//console.log("CLicked");
 					scope.click();
 				});
 			}
@@ -131,17 +131,56 @@ myDirectives.directive('columnPanel', function($filter){
 	return {
 		restrict : 'EA', 
 		transclude : true,
+		controller : function($scope){
+			var children = [];
+
+			var filter_children = function(filterBy){
+			
+				for(var i = 0; i < children.length; i++){
+					var category = children[i].item;
+
+					// if(filterBy[category]){
+					// 	children[i].elem.find('div').eq(0).addClass('show-animation');
+					// }else{
+					// 	children[i].elem.find('div').eq(0).removeClass('show-animation');
+					// }
+				}
+			};
+
+			this.child_clicked = function(obj){
+				$scope.itemClicked({item : obj});
+			}
+
+			this.add_child = function(child){
+				children.push(child);
+			}
+
+			$scope.$watchCollection("filterbyy", function(newVal,oldVal){
+					filter_children(newVal);
+			});
+
+		},
 		scope: {
 			cols : '@', 
 			collection : '=',
-			filterbyy : '='
+			filterbyy : '=', 
+			itemClicked : '&'
 		},
 		template : '<div class="column-panel">' + 
 									'<ul ng-repeat="col in columns">' +
-										'<li ng-repeat="item in col" ng-transclude></li>' +
+										'<li ng-repeat="item in col" my-transclude="{{ item.category }}"  ng-class="{yo_boy:is_in_category(filterbyy,item)}"></li>' +
 									'</ul>' +
 								'</div>', 
 		link : function(scope, elem,attrs){
+
+			scope.is_in_category = function(f,item){
+				if(f[item.category]){
+					return false;
+				}else{
+					return true;
+				}
+			}
+
 			// Helper Function to split items in collection
 			// into array representing number of columns
 		
@@ -186,14 +225,51 @@ myDirectives.directive('columnPanel', function($filter){
 				}
 			});
 
-
 			scope.$watchCollection('filterbyy', function(){
-				partitionrows();
+				//partitionrows();
 			});
 		
 		}
 	};
 });
+
+
+
+
+myDirectives.directive('myTransclude', function(){
+	return {
+		require: "^columnPanel", 
+		link : function(scope,elem,attr,ctrl,$transclude){
+	
+			$transclude(function(clone){
+				elem.empty();
+				elem.append(clone);
+	
+				var obj = {
+					elem : elem,
+					item : attr.myTransclude
+				};
+
+				ctrl.add_child(obj);
+
+				elem.on('click', function(e){
+					ctrl.child_clicked(attr.myTransclude);
+				});
+			});
+
+		}
+	};
+
+});
+
+
+
+
+
+
+
+
+
 
 
 
@@ -257,7 +333,6 @@ myDirectives.directive('logCard', function(assetsService){
 		},
 		link : function(scope,elem,attr){
 			
-
 			scope.path = assetsService.path('images');
 			if(typeof scope.entry === 'undefined' || scope.entry === ''){
 				// Create some default data to be injected into the template

@@ -7,9 +7,23 @@ div.journal-card {
   width: 220px;
   padding-bottom: 8px;
   margin: 4px;
+  position: relative;
   display: inline-block;
   position: relative;
   color: white; }
+
+div.journal-card .overlay{
+  background-color: black;
+  opacity: 0;
+  position: absolute;
+  z-index: 10;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}
+
+
 
 /* Differnet colours for the different categories available */
 div.journal-card.reports {
@@ -108,3 +122,6 @@ div.journal-card footer ul li p:last-child {
 
 .lastcounter {
   padding-right: 10px; }
+
+
+

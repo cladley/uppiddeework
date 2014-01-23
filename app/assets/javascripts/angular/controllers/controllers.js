@@ -56,13 +56,11 @@ myControllers.controller('publicController', ['$scope', 'auth', 'journalEntries'
 
 
 		$scope.$on('categoryfilter:changed', function(evt,data){
-		
 			$scope.cats = data.categories;
-			alert("ASdasd");
 		});
 
-		$scope.Run = function(){
-			alert("Running");
+		$scope.Run = function(obj){
+			console.log(obj);
 		};
 
 		$scope.cats = {
@@ -80,11 +78,11 @@ myControllers.controller('sidebarController', ['$scope', '$rootScope', function(
 
 
 		$scope.selected_category = {
-			"wellbeing" : true,
-			"creativity" : true,
-			"community" : true,
-			"productivity" : true,
-			"activity" : true
+			"wellbeing" : false,
+			"creativity" : false,
+			"community" : false,
+			"productivity" : false,
+			"activity" : false
 		};
 
 

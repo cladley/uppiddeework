@@ -5,9 +5,8 @@
 	</div>
 	
 
-	<column-panel cols="3" collection="entries" item-name="other" filterbyy="cats">
-	
-		<div journal-card journal-entry="item"  ng-click="Run()"></div>
+	<column-panel cols="3" collection="entries" item-name="other" filterbyy="cats" item-clicked="Run(item)">
+		<div journal-card journal-entry="item" ></div>
 	</column-panel>
 
 	<button ng-click="get()">Get</button>

@@ -40,6 +40,33 @@ div.public-journal .column-panel .journal-card:hover{
 }
 
 
-.is_selected_boy{
-	background-color: black !important;
+.yo_boy-add, .yo_boy-remove{
+    transition:all 1s linear;
+  -webkit-transition: all 1s linear;  
+}
+
+
+
+.yo_boy,
+.yo_boy-add.yo_boy-add-active{
+ /* background: black !important;*/
+}
+
+
+
+.yo_boy-add .overlay, .yo_boy-remove .overlay{
+    transition:all .5s linear;
+  -webkit-transition: all .5s linear;  
+}
+
+
+
+.yo_boy .overlay,
+.yo_boy-add.yo_boy-add-active .overlay{
+  opacity: 0.8 !important;
+}
+
+
+.yo_boy-remove.yo_boy-remove-active .overlay{
+	opacity: 0;
 }
