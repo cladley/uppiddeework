@@ -42,27 +42,6 @@ myDirectives.directive('journalCard', function(){
 		};
 	});
 
-// Display short version of the journal entry
-// Used on add, edit pages
-myDirectives.directive('journalTab', function(){
-		return {
-			restrict : 'EA', 
-			replace : true,
-			templateUrl : 'partials/journal_tab.html',
-			scope : {
-				journalEntry : '='
-			},
-			link : function(scope,elem,attrs){
-			
-				if(scope.journalEntry.category){
-					var category = scope.journalEntry.category.toLowerCase();
-					elem.addClass(category);
-				}
-
-			}
-		};
-	});
-
 
 // Checkbox and radiobutton which have a coloured spot
 // to indicate if selected or not. The colour is linked to 
@@ -91,13 +70,7 @@ myDirectives.directive('fancyInput', function(){
     			return result;
 				}
 
-				// if(typeof scope.type !== 'undefined' || scope.type !== ''){
-				// 	// default to a checkbox
-				// 	var input = elem.find('input')[0];
-				// 	angular.element(input).attr('type', 'checkbox');
-				// 	console.log(input);
-				// }
-				
+
 				if(typeof scope.scale !== 'undefined' || scope.scale !== ''){
 					elem.css('-webkit-transform' , 'scale(' + scope.scale + ')');
 					elem.css('-moz-transform' , 'scale(' + scope.scale + ')');
@@ -132,32 +105,10 @@ myDirectives.directive('columnPanel', function($filter){
 		restrict : 'EA', 
 		transclude : true,
 		controller : function($scope){
-			var children = [];
-
-			var filter_children = function(filterBy){
-			
-				for(var i = 0; i < children.length; i++){
-					var category = children[i].item;
-
-					// if(filterBy[category]){
-					// 	children[i].elem.find('div').eq(0).addClass('show-animation');
-					// }else{
-					// 	children[i].elem.find('div').eq(0).removeClass('show-animation');
-					// }
-				}
-			};
-
+	
 			this.child_clicked = function(obj){
 				$scope.itemClicked({item : obj});
 			}
-
-			this.add_child = function(child){
-				children.push(child);
-			}
-
-			$scope.$watchCollection("filterbyy", function(newVal,oldVal){
-					filter_children(newVal);
-			});
 
 		},
 		scope: {
@@ -225,9 +176,7 @@ myDirectives.directive('columnPanel', function($filter){
 				}
 			});
 
-			scope.$watchCollection('filterbyy', function(){
-				//partitionrows();
-			});
+		
 		
 		}
 	};
@@ -249,8 +198,6 @@ myDirectives.directive('myTransclude', function(){
 					elem : elem,
 					item : attr.myTransclude
 				};
-
-				ctrl.add_child(obj);
 
 				elem.on('click', function(e){
 					ctrl.child_clicked(attr.myTransclude);

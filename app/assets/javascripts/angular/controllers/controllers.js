@@ -8,12 +8,9 @@ var myControllers = angular.module('journal.controllers', []);
 // One controller to rule the all
 // Attached to body tag, so parent of every other controller
 myControllers.controller('masterController', ['$scope', function($scope){
-
 }]);
 
-
 myControllers.controller('mainController', ['$scope', 'mockJournalEntries', function($scope, dummydata){
-		$scope.title = "Main COTENT";
 }]);
 
 
@@ -21,11 +18,16 @@ myControllers.controller('publicController', ['$scope', 'auth', 'journalEntries'
 		// Todo : Load all entries on page load - check cache first.
 		//      : start timer to check server for new entries (60 secs)
 		//      : animate new entries in - flash or something
-    
-		$scope.loading = false;
 		$scope.entries = [];
-		$scope.get = function(){
-			$scope.loading = true; 
+		$scope.loading = false;
+
+		function init(){
+			get_data();
+		}
+
+		function get_data(){
+			$scope.loading = true;
+
 			journalEntries.getAll()
 				.success(function(data){
 					$scope.loading = false;
@@ -35,7 +37,8 @@ myControllers.controller('publicController', ['$scope', 'auth', 'journalEntries'
 					$scope.loading = false;
 					alert('An error occured in the publicController on the $http get');
 				});
-		};
+		}
+
 
 		$scope.start_timer = function(){
 			continual_record_fetcher.start();
@@ -71,6 +74,10 @@ myControllers.controller('publicController', ['$scope', 'auth', 'journalEntries'
 			"activity" : true
 		};
 
+
+		init();
+
+
 	}]);
 
 
@@ -84,6 +91,11 @@ myControllers.controller('sidebarController', ['$scope', '$rootScope', function(
 			"productivity" : false,
 			"activity" : false
 		};
+
+		$scope.add_new = function(){
+			$rootScope.$broadcast('journal:addnew', {  });
+		};
+
 
 
 		$scope.$watch('selected_category', function(){
@@ -188,6 +200,10 @@ myControllers.controller('addEntryController', ['$scope','UserLoggedIn', '$http'
 			$location.path(url);
 		}
 
+
+		$scope.$on('journal:addnew', function(evt,data){
+			$scope.changeClass();
+		});
 
 		// Run when controller is created.
 		// We check to see if our entries are already
