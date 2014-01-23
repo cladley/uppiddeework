@@ -38,3 +38,8 @@ div.public-journal .column-panel .journal-card:hover{
 	transform:scale(1.04);
 	
 }
+
+
+.is_selected_boy{
+	background-color: black !important;
+}

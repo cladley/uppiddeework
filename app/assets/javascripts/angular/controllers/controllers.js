@@ -58,8 +58,12 @@ myControllers.controller('publicController', ['$scope', 'auth', 'journalEntries'
 		$scope.$on('categoryfilter:changed', function(evt,data){
 		
 			$scope.cats = data.categories;
-
+			alert("ASdasd");
 		});
+
+		$scope.Run = function(){
+			alert("Running");
+		};
 
 		$scope.cats = {
 			"wellbeing" : true,

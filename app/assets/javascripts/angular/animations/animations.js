@@ -20,3 +20,25 @@ animations.animation('.move-class', function(){
   };
 });
 
+
+
+// animations.animation('.add-items', function(){
+//   return{
+//     enter : function(element,done){
+//       element.css('opacity', 0);
+
+//       $(element).animate({
+//         opacity : 1;
+//       },done);
+
+//       // optional onDone or onCancel callback
+//       // function to handle any post-animation
+//       // cleanup operations
+//       return function(isCancelled) {
+//         if(isCancelled) {
+//           $(element).stop();
+//         }
+//       }
+//     }
+//   };
+// });

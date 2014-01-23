@@ -62,7 +62,7 @@ myServices.factory('journalEntries', function($http,$q){
 myServices.factory('UserLoggedIn', function(){
 		return {
 			getCurrentUserId : function(){
-				return "1";
+				return "5";
 			}
 		};
 	});

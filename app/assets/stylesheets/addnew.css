@@ -137,13 +137,11 @@ div.new-journal .right-column p:first-child a {
 .move-class-add.move-class-add-active {
   top: 0px !important; }
 
-.journal-tab-list .add-items {
+.journal-tab-list .add-items.ng-enter {
   -webkit-transition: 0.5s linear all;
   -moz-transition: 0.5s linear all;
   -o-transition: 0.5s linear all;
-  transition: 0.5s linear all; }
-
-.journal-tab-list .add-items.ng-enter {
+  transition: 0.5s linear all;
   opacity: 0; }
 
 .journal-tab-list .add-items.ng-enter.ng-enter-active {
