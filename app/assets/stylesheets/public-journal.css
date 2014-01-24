@@ -22,6 +22,13 @@ div.public-journal .column-panel ul{
 	vertical-align: top;
 }
 
+
+div.public-journal .journal-wall-panel ul{
+	display: inline-block;
+	vertical-align: top;
+}
+
+
 div.public-journal .column-panel .journal-card{
 -webkit-transition: -webkit-transform .3s ease;
 	-moz-transition: -moz-transform .3s ease;
@@ -30,7 +37,26 @@ div.public-journal .column-panel .journal-card{
 	
 }
 
+
+div.public-journal .journal-wall-panel .journal-card{
+-webkit-transition: -webkit-transform .3s ease;
+	-moz-transition: -moz-transform .3s ease;
+	-ms-transition: -ms-transform .3s ease;
+	transition: transform .3s ease;
+	
+}
+
 div.public-journal .column-panel .journal-card:hover{
+	
+	-webkit-transform: scale(1.04);
+	-moz-transform:scale(1.04);
+	-ms-transform:scale(1.04);
+	transform:scale(1.04);
+	
+}
+
+
+div.public-journal .journal-wall-panel .journal-card:hover{
 	
 	-webkit-transform: scale(1.04);
 	-moz-transform:scale(1.04);

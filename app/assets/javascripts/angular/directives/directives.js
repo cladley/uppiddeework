@@ -100,32 +100,37 @@ myDirectives.directive('fancyInput', function(){
 // column-panel
 // Creates a N column layout using ul tags
 // User selects the number of columns through the 'cols' attribute
-myDirectives.directive('columnPanel', function($filter){
+myDirectives.directive('journalWallPanel', function($filter){
 	return {
 		restrict : 'EA', 
 		transclude : true,
+		scope: {
+			cols : '@', 
+			collection : '=',
+			filter : '=', 
+			itemClicked : '&'
+		},
+		template : '<div class="journal-wall-panel">' + 
+									'<ul ng-repeat="col in columns">' +
+										'<li ng-repeat="item in col" edit-panel="{{ item }}" my-journal-transclude="{{ item.category }}"  ng-class="{yo_boy:is_in_category(item)}"></li>' +
+									'</ul>' +
+								'</div>', 
 		controller : function($scope){
-	
+			this.children = [];
+
+			this.add_child = function(child){
+				this.children.push(child);
+			};
+
 			this.child_clicked = function(obj){
 				$scope.itemClicked({item : obj});
 			}
 
 		},
-		scope: {
-			cols : '@', 
-			collection : '=',
-			filterbyy : '=', 
-			itemClicked : '&'
-		},
-		template : '<div class="column-panel">' + 
-									'<ul ng-repeat="col in columns">' +
-										'<li ng-repeat="item in col" my-transclude="{{ item.category }}"  ng-class="{yo_boy:is_in_category(filterbyy,item)}"></li>' +
-									'</ul>' +
-								'</div>', 
 		link : function(scope, elem,attrs){
 
-			scope.is_in_category = function(f,item){
-				if(f[item.category]){
+			scope.is_in_category = function(item){
+				if(scope.filter[item.category]){
 					return false;
 				}else{
 					return true;
@@ -163,31 +168,83 @@ myDirectives.directive('columnPanel', function($filter){
 			
 			}	
 
-			function partitionrows(){
-					var temp = $filter('byCategory')(scope.collection,scope.filterbyy)
-					scope.columns = partition(scope.cols,temp);
-			}
+			// function partitionrows(){
+			// 		var temp = $filter('byCategory')(scope.collection,scope.filter)
+			// 		scope.columns = partition(scope.cols,temp);
+			// }
 
 			scope.cols =	scope.cols || 1;
 			scope.$watch('collection', function(){
 				if(scope.collection.length > 0){
-					var temp = $filter('byCategory')(scope.collection,scope.filterbyy)
+
+					var temp = $filter('byCategory')(scope.collection,scope.filter)
 					scope.columns = partition(scope.cols,temp);
 				}
 			});
-
-		
-		
 		}
 	};
 });
 
 
-
-
-myDirectives.directive('myTransclude', function(){
+myDirectives.directive('editPanel',['auth','$location', function(auth,$location){
 	return {
-		require: "^columnPanel", 
+		restrict : 'A',
+		link : function(scope,elem,attrs){
+
+			var item = attrs.editPanel;
+
+
+			if(item){
+				item = angular.fromJson(item);
+				if(auth.is_users(item)){
+					var rawstr = '<div class="floating-edit-panel"><a>edit</a></div>';
+					var new_element = angular.element(rawstr);
+					// debugger;
+					var a_tag = new_element.find('a').eq(0);
+
+
+					a_tag.bind('click', function(e){
+			
+						 e.stopPropagation();
+						var url = '/' + item.id + '/edit';
+					
+						scope.$apply(function(){
+							$location.path(url);
+						})	
+
+					});
+
+
+					elem.append(new_element);
+
+
+				}
+
+
+
+
+			}
+		}
+	};
+}]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+myDirectives.directive('myJournalTransclude', function(){
+	return {
+		require: "^journalWallPanel", 
 		link : function(scope,elem,attr,ctrl,$transclude){
 	
 			$transclude(function(clone){
@@ -202,6 +259,8 @@ myDirectives.directive('myTransclude', function(){
 				elem.on('click', function(e){
 					ctrl.child_clicked(attr.myTransclude);
 				});
+
+				ctrl.add_child(elem);
 			});
 
 		}

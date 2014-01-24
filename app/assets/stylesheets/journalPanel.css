@@ -13,7 +13,7 @@ div.journal-card {
   color: white; }
 
 div.journal-card .overlay{
-  background-color: black;
+  background-color: white;
   opacity: 0;
   position: absolute;
   z-index: 10;

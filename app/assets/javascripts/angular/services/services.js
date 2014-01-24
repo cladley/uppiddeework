@@ -100,6 +100,24 @@ myServices.factory('user_entries_cache', function(){
 	});
 
 
+
+myServices.factory('journal_cache', function(){
+	var all_journal_entries = [];
+  var my_journal_entries = [];
+
+
+  return {
+  	set_entries : function(entries){
+  		all_journal_entries = entries;
+  	},
+  	set_user_entries : function(entry){
+  		my_journal_entries.push(entry);
+  	}
+  };
+
+});
+
+
 // TODO : authorization - Get session cookie and save
 //      : get current user with token - maybe user id from server
 //      : user can only edit their own journal entries, so check
@@ -109,8 +127,11 @@ myServices.factory('auth', function(){
 	return{
 		get_user_id : function(){
 			return user_id;
+		},
+		is_users : function(item){
+		
+			return user_id == item.employee_id;
 		}
-
 	};
 
 });

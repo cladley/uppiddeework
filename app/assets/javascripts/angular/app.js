@@ -21,7 +21,7 @@ config(['$routeProvider', function($routeProvider){
 		 templateUrl : 'partials/public_page.html', 
 		 controller : 'publicController'
 	});
-	
+
 	$routeProvider.when('/add', 
 	{ 
 			templateUrl : 'partials/add_journal_entry.html', 
@@ -39,6 +39,13 @@ config(['$routeProvider', function($routeProvider){
 			templateUrl : 'partials/testpage.html', 
 			controller : 'testController'
 	});
+
+	$routeProvider.when('/:id/edit', 
+	{
+		templateUrl : 'partials/add_journal_entry.html', 
+		controller : 'edit_entry_controller'
+	});
+
 
 	$routeProvider.otherwise({redirectTo: '/'});
 }]);

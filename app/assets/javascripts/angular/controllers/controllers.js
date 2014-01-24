@@ -14,7 +14,9 @@ myControllers.controller('mainController', ['$scope', 'mockJournalEntries', func
 }]);
 
 
-myControllers.controller('publicController', ['$scope', 'auth', 'journalEntries', 'continual_record_fetcher', function($scope,auth, journalEntries, continual_record_fetcher){
+myControllers.controller('publicController', 
+	['$scope', 'auth', 'journalEntries', 'continual_record_fetcher','journal_cache',
+	function($scope,auth, journalEntries, continual_record_fetcher,journal_cache){
 		// Todo : Load all entries on page load - check cache first.
 		//      : start timer to check server for new entries (60 secs)
 		//      : animate new entries in - flash or something
@@ -32,6 +34,7 @@ myControllers.controller('publicController', ['$scope', 'auth', 'journalEntries'
 				.success(function(data){
 					$scope.loading = false;
 					$scope.entries = data;
+					journal_cache.set_entries(data);
 				})
 				.error(function(error){
 					$scope.loading = false;
@@ -105,7 +108,9 @@ myControllers.controller('sidebarController', ['$scope', '$rootScope', function(
 	}]);
 
 
-myControllers.controller('addEntryController', ['$scope','UserLoggedIn', '$http', 'journalEntries', '$location', 'user_entries_cache', function($scope,  UserLoggedIn, $http, journalEntries, $location, user_entries_cache){
+myControllers.controller('addEntryController', 
+	['$scope','UserLoggedIn', '$http', 'journalEntries', '$location', 'user_entries_cache',
+	 function($scope,  UserLoggedIn, $http, journalEntries, $location, user_entries_cache){
 		
 		$scope.showForm = true;
 		$scope.myCssVar = "";
@@ -223,7 +228,9 @@ myControllers.controller('addEntryController', ['$scope','UserLoggedIn', '$http'
 
 
 
-myControllers.controller('detailsController', ['$scope', '$routeParams', 'UserLoggedIn', '$location', function($scope,$routeParams, UserLoggedIn, $location){
+myControllers.controller('detailsController', 
+	['$scope', '$routeParams', 'UserLoggedIn', '$location', 
+	function($scope,$routeParams, UserLoggedIn, $location){
 		
 		if($routeParams.user_id !== UserLoggedIn.getCurrentUserId()){
 			$location.path('/public')
@@ -232,7 +239,17 @@ myControllers.controller('detailsController', ['$scope', '$routeParams', 'UserLo
 }]);
 
 
+myControllers.controller('edit_entry_controller', 
+	['$scope', '$routeParams', 
+	function($scope,$routeParams){
 
+		if($routeParams.id){
+			alert($routeParams.id);
+
+
+		}
+
+}]);
 
 
 
