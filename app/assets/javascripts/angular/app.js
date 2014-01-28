@@ -25,7 +25,13 @@ config(['$routeProvider', function($routeProvider){
 	$routeProvider.when('/add', 
 	{ 
 			templateUrl : 'partials/add_journal_entry.html', 
-		  controller : 'addEntryController'
+		  controller : 'entries_controller'
+	});
+
+	$routeProvider.when('/user/:user_id/edit/:id', 
+	{
+		templateUrl : 'partials/add_journal_entry.html', 
+		controller : 'entries_controller'
 	});
 	
 	$routeProvider.when('/poster/:user_id/entry/:entry_id', 
@@ -34,17 +40,6 @@ config(['$routeProvider', function($routeProvider){
 		  controller: 'detailsController' 
 	});
 
-	$routeProvider.when('/testpage',
-	{
-			templateUrl : 'partials/testpage.html', 
-			controller : 'testController'
-	});
-
-	$routeProvider.when('/:id/edit', 
-	{
-		templateUrl : 'partials/add_journal_entry.html', 
-		controller : 'edit_entry_controller'
-	});
 
 
 	$routeProvider.otherwise({redirectTo: '/'});

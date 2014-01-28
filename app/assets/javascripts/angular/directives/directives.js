@@ -186,42 +186,50 @@ myDirectives.directive('journalWallPanel', function($filter){
 });
 
 
-myDirectives.directive('editPanel',['auth','$location', function(auth,$location){
+
+myDirectives.directive('editPanel',['$location', '$compile','auth','action_service', 
+	function($location,$compile,auth,action_service){
 	return {
 		restrict : 'A',
 		link : function(scope,elem,attrs){
-
 			var item = attrs.editPanel;
-
 
 			if(item){
 				item = angular.fromJson(item);
 				if(auth.is_users(item)){
-					var rawstr = '<div class="floating-edit-panel"><a>edit</a></div>';
+					var user_id = auth.get_user_id();
+					var rawstr = '<div class="floating-edit-panel" ng-class="{show_it : show}" ><a>edit</a></div>';
 					var new_element = angular.element(rawstr);
-					// debugger;
 					var a_tag = new_element.find('a').eq(0);
+					var card_content = elem.find('div.card-content')[0];
 
+					elem.bind('mouseenter', function(e){
+						scope.$apply(function(){
+								scope.show = true;
+							});
+					});
 
+					elem.bind('mouseleave', function(e){
+							scope.$apply(function(){
+								scope.show = false;
+							});
+					});
+
+				
 					a_tag.bind('click', function(e){
-			
-						 e.stopPropagation();
-						var url = '/' + item.id + '/edit';
-					
+				
+						e.stopPropagation();
+
+						var url = '/user/' + user_id + '/edit/' + item.id;
+						action_service.set_action('edit');
 						scope.$apply(function(){
 							$location.path(url);
 						})	
 
 					});
 
-
-					elem.append(new_element);
-
-
+					angular.element(card_content).prepend($compile(new_element)(scope));
 				}
-
-
-
 
 			}
 		}

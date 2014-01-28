@@ -96,3 +96,27 @@ div.public-journal .journal-wall-panel .journal-card:hover{
 .yo_boy-remove.yo_boy-remove-active .overlay{
 	opacity: 0;
 }
+
+
+.floating-edit-panel{
+	background-color: black;
+	position: absolute;
+	z-index : 200;
+	right:0px;
+}
+
+.floating-edit-panel:hover{
+	cursor: pointer;
+}
+
+
+.show_it-add, .show_it-remove{
+	transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+}
+
+.floating-edit-panel.show_it,
+.floating-edit-panel.show_it-add.show_it-add-active{
+	right:0px;
+	
+}

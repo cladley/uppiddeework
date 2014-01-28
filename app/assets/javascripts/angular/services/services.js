@@ -26,14 +26,88 @@ myServices.factory('assetsService', function(){
 });
 
 
-myServices.factory('journalEntries', function($http,$q){
+myServices.factory('action_service', function(){
+	var action;
+	return {
+		set_action : function(action_object){
+			action = action_object;
+		},
+		get_action : function(){
+			return action;
+		}
+	};
+});
+
+myServices.factory('journal_entries', function($http,$q){
+		var cache = {
+			all_entries : null,
+			user_entries : null,
+			user_entries_hash : null
+		};
+
+
+		function setup_entries_hash(data){
+			cache.user_entries_hash = {};
+			for(var i = 0, len = data.length; i < len; i++){
+				cache.user_entries_hash[data[i].id] = data[i];
+			}
+		}
+
 		return {
 			getAll : function(){
-				return $http.get('/entries');
+				var deferred = $q.defer();
+
+				if(cache.all_entries === null){
+					$http.get('/entries')
+						.success(function(data){
+							cache.all_entries = data;
+							deferred.resolve(data);
+						})
+						.error(function(error){
+							deferred.reject(error);
+						});
+				}else{
+					console.log("hitting the cache");
+					deferred.resolve(cache.all_entries);
+				}
+
+				return deferred.promise;
 			},
 			getUsers : function(user_id){
+				var deferred = $q.defer();
 				var url = '/employee/' + user_id + '/entries';
-				return $http.get(url);
+				
+				if(cache.user_entries === null){
+					$http.get(url)
+						.success(function(data){
+							cache.user_entries = data; 
+							setup_entries_hash(data);
+							deferred.resolve(data);
+						})
+						.error(function(error){
+							deferred.reject(error);
+						});
+				}else{
+					deferred.resolve(cache.user_entries);
+				}
+			
+				return deferred.promise;
+			},
+			// would need to be changed
+			get_entry : function(id){
+				var deferred = $q.defer();
+				if(cache.user_entries === null){
+
+				}else{
+					var entry = cache.user_entries_hash[id];
+					if(entry){
+						deferred.resolve(entry);
+					}else{
+						deferred.reject("no entry with id: " + id  +" found.");
+					}
+				}
+
+				return deferred.promise;
 			},
 			create : function(user_id, entry){
 
@@ -58,7 +132,6 @@ myServices.factory('journalEntries', function($http,$q){
 		};
 	});
 
-
 myServices.factory('UserLoggedIn', function(){
 		return {
 			getCurrentUserId : function(){
@@ -67,55 +140,6 @@ myServices.factory('UserLoggedIn', function(){
 		};
 	});
 	
-
-myServices.factory('user_entries_cache', function(){
-		var user_entries = {};
-		var init = false;
-
-		return {
-			get : function(){
-				return user_entries;
-			},
-			set : function(entries){
-				user_entries = entries;
-				init = true;
-			},
-			add_entry : function(entry){
-				user_entries.push(entry);
-				init = true;
-			},
-			remove_entry : function(entry){
-
-			},
-			get_entry : function(id){
-
-			},
-			update_entry : function(entry){
-
-			},
-			are_records : function(){
-				return init;
-			}
-		};
-	});
-
-
-
-myServices.factory('journal_cache', function(){
-	var all_journal_entries = [];
-  var my_journal_entries = [];
-
-
-  return {
-  	set_entries : function(entries){
-  		all_journal_entries = entries;
-  	},
-  	set_user_entries : function(entry){
-  		my_journal_entries.push(entry);
-  	}
-  };
-
-});
 
 
 // TODO : authorization - Get session cookie and save
@@ -129,110 +153,75 @@ myServices.factory('auth', function(){
 			return user_id;
 		},
 		is_users : function(item){
-		
-			return user_id == item.employee_id;
-		}
-	};
-
-});
-
-
-
-myServices.factory('continual_record_fetcher', function($timeout,$q,journalEntries){
-	var timer;
-	var should_stop = true;
-	var is_running = false;
-	var error_count = 0;
-	var successCallback;
-	var errorCallback;
-
-	function run(){
-		console.log("fetching records from server");
-		var prm = journalEntries.getAll();
-
-		prm.then(
-			function(data,status,headers,config){    // On Success
-				successCallback(data);
-				if(!should_stop) $timeout(run,3000);
-			},
-			function(data,status,headers,config){    // On Error. Idea = if get 3 or more errors, then cancel
-				// Error received, retry and send again
-				if(++error_count > 3){
-					if(!should_stop) $timeout(run,3000);
-				}else{
-					// After so many errors and retrys, cancel operation
-					errorCallback(data);
-					_stop();
-				}
-			});
-	}
-
-	function _stop(){
-		$timeout.cancel(timer);
-		should_stop = true;
-		is_running = false;
-		error_count = 0;
-		console.log("Stopped");
-	}
-
-	return {
-		start : function(onSuccess,onError){
-			successCallback = onSuccess || function(){};
-			errorCallback = onError || function(){};
-
-			if(!is_running){
-				is_running = true;
-				should_stop = false;
-				error_count = 0;
-				run();				
+			// If a full record is passed it
+			if(angular.isObject(item)){
+				return user_id == item.employee_id;
+			// If an entry id is passed in
+			}else if(angular.isString(item)){
+				return user_id === item;
+			}else{
+				return false;
 			}
-
-		},
-		stop : function(){
-			_stop();
 		}
 	};
 });
 
 
+// myServices.factory('continual_record_fetcher', function($timeout,$q,journalEntries){
+// 	var timer;
+// 	var should_stop = true;
+// 	var is_running = false;
+// 	var error_count = 0;
+// 	var successCallback;
+// 	var errorCallback;
+
+// 	function run(){
+// 		console.log("fetching records from server");
+// 		var prm = journalEntries.getAll();
+
+// 		prm.then(
+// 			function(data,status,headers,config){    // On Success
+// 				successCallback(data);
+// 				if(!should_stop) $timeout(run,3000);
+// 			},
+// 			function(data,status,headers,config){    // On Error. Idea = if get 3 or more errors, then cancel
+// 				// Error received, retry and send again
+// 				if(++error_count > 3){
+// 					if(!should_stop) $timeout(run,3000);
+// 				}else{
+// 					// After so many errors and retrys, cancel operation
+// 					errorCallback(data);
+// 					_stop();
+// 				}
+// 			});
+// 	}
+
+// 	function _stop(){
+// 		$timeout.cancel(timer);
+// 		should_stop = true;
+// 		is_running = false;
+// 		error_count = 0;
+// 		console.log("Stopped");
+// 	}
+
+// 	return {
+// 		start : function(onSuccess,onError){
+// 			successCallback = onSuccess || function(){};
+// 			errorCallback = onError || function(){};
+
+// 			if(!is_running){
+// 				is_running = true;
+// 				should_stop = false;
+// 				error_count = 0;
+// 				run();				
+// 			}
+
+// 		},
+// 		stop : function(){
+// 			_stop();
+// 		}
+// 	};
+// });
 
 
-// Cache service for user entries 
-myServices.factory('cache', function(){
-	// The user entries will always be up to date,
-	// since only the user can create/edit etc. When one
-	// of those operation happens, then we update 
-	// user_entries here
-	var user_entries = {};
-	var invalid = true;
 
-	return {
-		get_user_entries : function(){
-
-		},
-		set_user_entries : function(){
-
-		},
-		add_user_entry : function(entry){
-			user_entries.push(entry);
-		}, 
-		get_user_entry : function(entry_id){
-
-		},
-		update_user_entry : function(entry_id, entry){
-
-		},
-		remove_user_entry: function(entry_id){
-
-		},
-		get_public_entries : function(){
-
-		},
-		invalidate_public_entries : function(){
-			invalid = true;
-		},
-		set_public_entries : function(entries){
-
-		}
-	};
-});

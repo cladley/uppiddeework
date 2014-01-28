@@ -8,6 +8,7 @@ div.journal-card {
   padding-bottom: 8px;
   margin: 4px;
   position: relative;
+  overflow: hidden;
   display: inline-block;
   position: relative;
   color: white; }
@@ -59,7 +60,8 @@ div.journal-card header img {
 
 div.journal-card div.card-content {
   padding: 20px;
-  margin-top: 4px; }
+  margin-top: 4px; 
+}
 
 .user-info {
   margin-top: 13px; }
